@@ -1,31 +1,29 @@
 {
-    "env": {
-        "browser": true,
-        "commonjs": true,
-        "es2021": true
-    },
-    "extends": [
-        "eslint:recommended",
-        "plugin:react/recommended"
-    ],
-    "parserOptions": {
-        "ecmaFeatures": {
-            "jsx": true
-        },
-        "ecmaVersion": 12
-    },
-    "plugins": [
-        "react"
-    ],
-    "rules": {
-        "no-console": "off",
-        // we only want single quotes
-        "quotes": ["error", "single"],
-        // we want to force semicolons
-        "semi": ["error", "always"],
-        // we use tab to indent our code
-        "indent": ["error", "tab"],
-        // we want to avoid useless spaces
-        "no-multi-spaces": ["error"]
-    }
+	"parser": "babel-eslint",
+	"env": {
+		"browser": true,
+		"commonjs": true,
+		"es2021": true
+	},
+	"extends": ["eslint:recommended", "plugin:react/recommended"],
+	"parserOptions": {
+		"ecmaFeatures": {
+			"jsx": true
+		},
+		"ecmaVersion": 12
+	},
+	"plugins": ["react"],
+	"ignorePatterns": ["settings.json"],
+	"rules": {
+		"no-console":"off",
+		"react/react-in-jsx-scope": "off",
+		// we only want single quotes
+		"quotes": ["error", "single"],
+		// we want to force semicolons
+		"semi": ["error", "always"],
+		// we use 2 spaces to indent our code
+		"indent": ["error", 2],
+		// we want to avoid useless spaces
+		"no-multi-spaces": ["error"]
+	}
 }
