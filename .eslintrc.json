@@ -1,0 +1,31 @@
+{
+    "env": {
+        "browser": true,
+        "commonjs": true,
+        "es2021": true
+    },
+    "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended"
+    ],
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": 12
+    },
+    "plugins": [
+        "react"
+    ],
+    "rules": {
+        "no-console": "off",
+        // we only want single quotes
+        "quotes": ["error", "single"],
+        // we want to force semicolons
+        "semi": ["error", "always"],
+        // we use tab to indent our code
+        "indent": ["error", "tab"],
+        // we want to avoid useless spaces
+        "no-multi-spaces": ["error"]
+    }
+}
