@@ -1,17 +1,24 @@
 // import logo from './logo.svg';
 import './App.css';
-import React from 'react';
+// import React from 'react';
 import styled from 'styled-components';
 
-// import Current from './components/Current/Current';
-// import Forecast from './components/Forecast/Forecast';
-// import OtherCities from './components/OtherCities/OtherCities';
+import CurrentLeft from './components/CurrentLeft/CurrentLeft';
+import Forecast from './components/Forecast/Forecast';
+import OtherCities from './components/OtherCities/OtherCities';
+import CurrentRight from './components/CurrentRight/CurrentRight';
+
+import ContainerBottom from './components/ContainerBottom/ContainerBottom';
 
 const Container = styled.div`
+	width: 100%;
+	min-height: 100vh;
 	background-image: url(https://wallpaperaccess.com/full/2629319.png);
+	background-repeat: no-repeat;
 	background-size: cover;
+	background-position: center;
 	display: flex;
-  justify-content: center;
+	justify-content: center;
 `;
 
 const Card = styled.div`
@@ -33,71 +40,51 @@ const CardTop = styled.div`
 	position: relative;
 `;
 
-const TopHeader = styled.div`
-	font-size: 3rem;
-`;
-
 const CardBottom = styled.div`
-  display: flex;
-  flex-direction: row;
-  padding: 36px 0;
+	display: flex;
+	flex-direction: row;
+	padding: 36px 0;
 }
 `;
 
-const BottomSection = styled.div`
-	padding: 0 48px;
-	border: 0;
-	border-bottom-left-radius: 32px;
-	border-bottom-right-radius: 32px;
-`;
-
-const BottomDivider = styled.div`
+const DividerBottom = styled.div`
 	width: 3px;
 	background-color: rgba(0, 0, 0, 0.1);
 `;
 
-const BottomHeader = styled.h2`
-	margin-bottom: 1rem;
-	font-size: 1.5rem;
-	margin: 0 0 0.5rem;
-	letter-spacing: 2px;
-	font-weight: 300;
-`;
-
-
 const App = () => {
-  return (
-    <Container>
-      <Card>
-        <CardTop>
-          <TopHeader>Melbourne</TopHeader>
-        </CardTop>
-        <CardBottom>
-          <BottomSection>
-            <BottomHeader>OtherCities</BottomHeader>
-          </BottomSection>
-          <BottomDivider/>
-          <BottomSection>
-            <BottomHeader>Forecast</BottomHeader>
-          </BottomSection>
-        </CardBottom>
-      </Card>
-    </Container>
-  );
+	return (
+		<Container>
+			<Card>
+				<CardTop>
+					<CurrentLeft />
+					<CurrentRight />
+				</CardTop>
+				<CardBottom>
+					<ContainerBottom>
+						<OtherCities />
+					</ContainerBottom>
+					<DividerBottom />
+					<ContainerBottom>
+						<Forecast />
+					</ContainerBottom>
+				</CardBottom>
+			</Card>
+		</Container>
+	);
 };
 
 export default App;
 
 /* <Container>
-      <Card>
-        <Current />
-        <Forecast />
-        <OtherCities />
-      </Card>
-    </Container> */
+		<Card>
+		<Current />
+		<Forecast />
+		<OtherCities />
+		</Card>
+		</Container> */
 
-{
-  /* <div className="App">
+/* <div className="App">
 	<Container>
 		<Card>
 			<Current />
@@ -120,4 +107,3 @@ export default App;
 		</a>
 	</header>
 </div>; */
-}
