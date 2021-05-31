@@ -28,50 +28,51 @@ const CityTemp = styled.div`
 	margin-right: 10px;
 `;
 
-// const CityList = [
-// 	{
-// 		key: 'Sydeny',
-// 		temp: '17°',
-// 		icon: 'http://openweathermap.org/img/wn/02d.png',
-// 	},
-// 	{
-// 		key: 'Brisbane',
-// 		temp: '20°',
-// 		icon: 'http://openweathermap.org/img/wn/03d.png',
-// 	},
-// 	{
-// 		key: 'Perth',
-// 		temp: '17°',
-// 		icon: 'http://openweathermap.org/img/wn/03d.png',
-// 	},
-// ];
+const CityList = [
+	{
+		key: 'Sydeny',
+		temp: '17°',
+		icon: 'http://openweathermap.org/img/wn/02d.png',
+	},
+	{
+		key: 'Brisbane',
+		temp: '20°',
+		icon: 'http://openweathermap.org/img/wn/03d.png',
+	},
+	{
+		key: 'Perth',
+		temp: '17°',
+		icon: 'http://openweathermap.org/img/wn/03d.png',
+	},
+];
 
 const OtherCities = () => (
 	<ContainerBottom>
 		<HeaderBottom>Other Cities</HeaderBottom>
-		<ContainerCities>
-			<CityName>Sydeny</CityName>
-			<CityTemp>17°</CityTemp>
-			<img src="http://openweathermap.org/img/wn/02d.png" alt="Clouds" />
-		</ContainerCities>
-		<ContainerCities>
-			<CityName>Brisbane</CityName>
-			<CityTemp>20°</CityTemp>
-			<img src="http://openweathermap.org/img/wn/02d.png" alt="Clouds" />
-		</ContainerCities>
-		<ContainerCities>
-			<CityName>Perth</CityName>
-			<CityTemp>17°</CityTemp>
-			<img src="http://openweathermap.org/img/wn/03d.png" alt="Clouds" />
-		</ContainerCities>
-		{/* {CityList.map((key, temp, icon) => (
-			<ContainerCities key={key}>
-				<CityName>{key}</CityName>
-				<CityTemp>{temp}</CityTemp>
-				<img src={icon} alt="Clouds" />
+		{CityList.map((item) => (
+			<ContainerCities key={item.key}>
+				<CityName>{item.key}</CityName>
+				<CityTemp>{item.temp}</CityTemp>
+				<img src={item.icon} alt="Clouds" />
 			</ContainerCities>
-		))} */}
+		))}
 	</ContainerBottom>
 );
 
 export default OtherCities;
+
+/* <ContainerCities>
+	<CityName>Sydeny</CityName>
+	<CityTemp>17°</CityTemp>
+	<img src="http://openweathermap.org/img/wn/02d.png" alt="Clouds" />
+</ContainerCities>
+<ContainerCities>
+	<CityName>Brisbane</CityName>
+	<CityTemp>20°</CityTemp>
+	<img src="http://openweathermap.org/img/wn/02d.png" alt="Clouds" />
+</ContainerCities>
+<ContainerCities>
+	<CityName>Perth</CityName>
+	<CityTemp>17°</CityTemp>
+	<img src="http://openweathermap.org/img/wn/03d.png" alt="Clouds" />
+</ContainerCities> */
