@@ -15,9 +15,9 @@ const CityName = styled.div`
 	}
 `;
 
-const CurrentRight = () => (
+const CurrentRight = ({city}) => (
 	<ContainerTop>
-		<CityName>Melbourne</CityName>
+		<CityName>{city}</CityName>
 	</ContainerTop>
 );
 

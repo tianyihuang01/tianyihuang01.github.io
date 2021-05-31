@@ -53,31 +53,91 @@ const DividerBottom = styled.div`
 	background-color: rgba(0, 0, 0, 0.1);
 `;
 
+// const { Melbourne, Sydney, Brisbane, Perth } = [
+// 	'2158177',
+// 	'2147714',
+// 	'7839562',
+// 	'2153391',
+// ];
+const Melbourne = 	'2158177';
+
+const getCurrentWeather = (setWeather) => {
+	const base = 'http://api.openweathermap.org/data/2.5/weather?';
+	const city = Melbourne;
+	const api = '999f0f8fefdcfd98119382216ae94e89';
+	const units = 'metric';
+
+	const url = `${base}id=${city}&appid=${api}&units=${units}`;
+
+	//https://www.w3schools.com/xml/xml_http.asp
+	var xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function () {
+		if (this.readyState == 4 && this.status == 200) {
+			// Typical action to be performed when the document is ready:
+			// document.getElementById('demo').innerHTML = xhttp.responseText;
+			const data = JSON.parse(xhttp.responseText);
+			// const data = xhttp.responseText;
+			// console.log(data);
+			setWeather(data);
+		}
+	};
+	xhttp.open('GET', url, true);
+	xhttp.send();
+};
+
+
 class App extends React.Component {
-	constructor(props){
+	constructor(props) {
 		super(props);
 
 		this.state = {
-			data: undefined,
+			weather: undefined,
 		};
 
-		this.data = this.setData.bind(this);
+		this.setWeather = this.setWeather.bind(this);
 	}
 
-	setData(data){
-		this.setState(data);
+	setWeather(newWeather) {
+		this.setState({ 
+			weather: newWeather, 
+		});
 	}
 
+	componentDidMount() {
+		// getCurrentWeather(this.setWeather);
+		// fetch().then((weather) => (
+		// 	this.setWeather(weather)
+		// ));
+		getCurrentWeather((weather) => {
+			this.setWeather({
+				city: weather.name,
+				temp: weather.main.temp,
+				weather: weather.weather[0].main,
+				humidity: weather.main.humidity,
+				wind: weather.wind.speed,
+				icon: weather.weather[0].icon,
+			});
+		});
+
+	}
 
 	render() {
-		// const { data } = this.state;
-
+		const { weather } = this.state;
+		console.log(weather);
+		
 		return (
 			<Container>
 				<Card>
 					<CardTop>
-						<CurrentLeft />
-						<CurrentRight />
+						{weather && (
+							<CurrentLeft
+								temp={weather.temp}
+								weather={weather.weather}
+								humidity={weather.humidity}
+								wind={weather.wind}
+							/>
+						)}
+						{weather && <CurrentRight city={weather.city}/>}
 					</CardTop>
 					<CardBottom>
 						<OtherCities />
