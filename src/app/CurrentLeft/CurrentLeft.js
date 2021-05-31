@@ -1,7 +1,7 @@
 // import React from 'react';
 import styled from 'styled-components';
 
-import ContainerTop from '../ContainerTop/ContainerTop';
+import ContainerTop from '../../components/ContainerTop/ContainerTop';
 
 // const Loading = styled.div`
 // 	font-size: 3rem;

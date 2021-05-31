@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import ContainerTop from '../ContainerTop/ContainerTop';
+import ContainerTop from '../../components/ContainerTop/ContainerTop';
 
 const CityName = styled.div`
 	margin-top: 16px;

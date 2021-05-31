@@ -1,12 +1,12 @@
 // import logo from './logo.svg';
 // import './App.css';
-// import React from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
-import CurrentLeft from './components/CurrentLeft/CurrentLeft';
-import Forecast from './components/Forecast/Forecast';
-import OtherCities from './components/OtherCities/OtherCities';
-import CurrentRight from './components/CurrentRight/CurrentRight';
+import CurrentLeft from './app/CurrentLeft/CurrentLeft';
+import Forecast from './app/Forecast/Forecast';
+import OtherCities from './app/OtherCities/OtherCities';
+import CurrentRight from './app/CurrentRight/CurrentRight';
 
 // import ContainerBottom from './components/ContainerBottom/ContainerBottom';
 
@@ -53,23 +53,60 @@ const DividerBottom = styled.div`
 	background-color: rgba(0, 0, 0, 0.1);
 `;
 
-const App = () => {
-	return (
-		<Container>
-			<Card>
-				<CardTop>
-					<CurrentLeft />
-					<CurrentRight />
-				</CardTop>
-				<CardBottom>
-					<OtherCities/>
-					<DividerBottom />
-					<Forecast />
-				</CardBottom>
-			</Card>
-		</Container>
-	);
-};
+class App extends React.Component {
+	constructor(props){
+		super(props);
+
+		this.state = {
+			data: undefined,
+		};
+
+		this.data = this.setData.bind(this);
+	}
+
+	setData(data){
+		this.setState(data);
+	}
+
+
+	render() {
+		// const { data } = this.state;
+
+		return (
+			<Container>
+				<Card>
+					<CardTop>
+						<CurrentLeft />
+						<CurrentRight />
+					</CardTop>
+					<CardBottom>
+						<OtherCities />
+						<DividerBottom />
+						<Forecast />
+					</CardBottom>
+				</Card>
+			</Container>
+		);
+	}
+}
+
+// const App = () => {
+// 	return (
+// 		<Container>
+// 			<Card>
+// 				<CardTop>
+// 					<CurrentLeft />
+// 					<CurrentRight />
+// 				</CardTop>
+// 				<CardBottom>
+// 					<OtherCities/>
+// 					<DividerBottom />
+// 					<Forecast />
+// 				</CardBottom>
+// 			</Card>
+// 		</Container>
+// 	);
+// };
 
 export default App;
 

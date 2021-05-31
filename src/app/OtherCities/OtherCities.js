@@ -1,7 +1,7 @@
 // import React from 'react';
 import styled from 'styled-components';
 
-import ContainerBottom from '../ContainerBottom/ContainerBottom';
+import ContainerBottom from '../../components/ContainerBottom/ContainerBottom';
 import HeaderBottom from '../HeaderBottom/HeaderBottom';
 
 const ContainerCities = styled.div`
