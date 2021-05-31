@@ -1,5 +1,5 @@
 // import logo from './logo.svg';
-import './App.css';
+// import './App.css';
 // import React from 'react';
 import styled from 'styled-components';
 
@@ -8,7 +8,7 @@ import Forecast from './components/Forecast/Forecast';
 import OtherCities from './components/OtherCities/OtherCities';
 import CurrentRight from './components/CurrentRight/CurrentRight';
 
-import ContainerBottom from './components/ContainerBottom/ContainerBottom';
+// import ContainerBottom from './components/ContainerBottom/ContainerBottom';
 
 const Container = styled.div`
 	width: 100%;
@@ -19,6 +19,7 @@ const Container = styled.div`
 	background-position: center;
 	display: flex;
 	justify-content: center;
+	align-items: center;
 `;
 
 const Card = styled.div`
@@ -61,13 +62,9 @@ const App = () => {
 					<CurrentRight />
 				</CardTop>
 				<CardBottom>
-					<ContainerBottom>
-						<OtherCities />
-					</ContainerBottom>
+					<OtherCities/>
 					<DividerBottom />
-					<ContainerBottom>
-						<Forecast />
-					</ContainerBottom>
+					<Forecast />
 				</CardBottom>
 			</Card>
 		</Container>

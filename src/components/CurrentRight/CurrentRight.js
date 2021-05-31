@@ -4,10 +4,14 @@ import ContainerTop from '../ContainerTop/ContainerTop';
 
 const CityName = styled.div`
 	margin-top: 16px;
-	font-weight: 500;
+	font-size: 2rem;
 
 	&::after {
-		border: solid rgba(11, 58, 102, 0.75) 1px;
+		content: '';
+		border: solid white 1px;
+		width: 60%;
+		margin: 10px auto;
+		display: block;
 	}
 `;
 
