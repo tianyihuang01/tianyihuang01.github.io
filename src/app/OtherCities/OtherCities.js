@@ -26,38 +26,41 @@ const CityTemp = styled.div`
 	font-size: 1.25rem;
 	color: rgba(0, 0, 0, 0.5);
 	margin-right: 10px;
+	width: 67px;
 `;
 
-const CityList = [
-	{
-		key: 'Sydeny',
-		temp: '17°',
-		icon: 'http://openweathermap.org/img/wn/02d.png',
-	},
-	{
-		key: 'Brisbane',
-		temp: '20°',
-		icon: 'http://openweathermap.org/img/wn/03d.png',
-	},
-	{
-		key: 'Perth',
-		temp: '17°',
-		icon: 'http://openweathermap.org/img/wn/03d.png',
-	},
-];
-
-const OtherCities = () => (
-	<ContainerBottom>
-		<HeaderBottom>Other Cities</HeaderBottom>
-		{CityList.map((item) => (
-			<ContainerCities key={item.key}>
-				<CityName>{item.key}</CityName>
-				<CityTemp>{item.temp}</CityTemp>
-				<img src={item.icon} alt="Clouds" />
-			</ContainerCities>
-		))}
-	</ContainerBottom>
-);
+const OtherCities = ({weather}) => {
+	// console.log(city);
+	const CityList = [
+		{
+			key: weather['sydney'].city,
+			temp: `${weather['sydney'].temp}°`,
+			icon: `http://openweathermap.org/img/wn/${weather['sydney'].icon}.png`,
+		},
+		{
+			key: weather['brisbane'].city,
+			temp: `${weather['brisbane'].temp}°`,
+			icon: `http://openweathermap.org/img/wn/${weather['brisbane'].icon}.png`,
+		},
+		{
+			key: weather['perth'].city,
+			temp: `${weather['perth'].temp}°`,
+			icon: `http://openweathermap.org/img/wn/${weather['perth'].icon}.png`,
+		},
+	];
+	return (
+		<ContainerBottom>
+			<HeaderBottom>Other Cities</HeaderBottom>
+			{CityList.map((item) => (
+				<ContainerCities key={item.key}>
+					<CityName>{item.key}</CityName>
+					<CityTemp>{item.temp}</CityTemp>
+					<img src={item.icon} alt="Clouds" />
+				</ContainerCities>
+			))}
+		</ContainerBottom>
+	);
+};
 
 export default OtherCities;
 
