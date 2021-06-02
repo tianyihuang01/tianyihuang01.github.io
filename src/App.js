@@ -8,7 +8,9 @@ import Forecast from './app/Forecast/Forecast';
 import OtherCities from './app/OtherCities/OtherCities';
 import CurrentRight from './app/CurrentRight/CurrentRight';
 
-// import GetCurrentWeather from './api/GetCurrentWeather/GetCurrentWeather';
+// import getCurrentWeather from './api/getCurrentWeather/getCurrentWeather';
+import getCurrentAndForecast from './api/getCurrentAndForecast/getCurrentAndForecast';
+import { CITIES } from './constants/constants';
 
 // import ContainerBottom from './components/ContainerBottom/ContainerBottom';
 
@@ -62,40 +64,6 @@ const DividerBottom = styled.div`
 // 	'2153391',
 // ];
 
-const getCurrentWeather = (setWeather) => {
-	const base = 'http://api.openweathermap.org/data/2.5/weather?';
-	// const city = Melbourne;
-	const cities = ['2158177', '2147714', '7839562', '2153391'];
-	const api = '999f0f8fefdcfd98119382216ae94e89';
-	const units = 'metric';
-	let data = [];
-
-	//https://www.w3schools.com/xml/xml_http.asp
-	const xhttp = new XMLHttpRequest();
-
-	(function loop(i, length) {
-		if (i >= length) {
-			setWeather(data);
-			return;
-		}
-		const url = `${base}id=${cities[i]}&appid=${api}&units=${units}`;
-		xhttp.open('GET', url, true);
-		xhttp.onreadystatechange = function () {
-			if (this.readyState == 4 && this.status == 200) {
-				// document.getElementById('demo').innerHTML = xhttp.responseText;
-				data.push(JSON.parse(xhttp.responseText));
-				// setWeather(data);
-				// console.log(data[i]);
-				// setWeather(data);
-				loop(i + 1, length);
-			}
-		};
-		xhttp.send();
-	})(0, cities.length);
-
-	// console.log(data);
-	// console.log(data[0]);
-};
 
 class App extends React.Component {
 	constructor(props) {
@@ -117,6 +85,7 @@ class App extends React.Component {
 
 	componentDidMount() {
 		// getCurrentWeather(this.setWeather);
+		// getCurrentAndForecast(this.setWeather);
 		// fetch().then((weather) => (
 		// 	this.setWeather(weather)
 		// ));
@@ -130,56 +99,85 @@ class App extends React.Component {
 		// 	});
 		// });
 
-		getCurrentWeather((weather) => {
+		getCurrentAndForecast((weather) => {
 			this.setWeather({
 				melbourne: {
-					city: weather[0].name,
-					temp: weather[0].main.temp,
-					weather: weather[0].weather[0].main,
-					humidity: weather[0].main.humidity,
-					wind: weather[0].wind.speed,
-					icon: weather[0].weather[0].icon,
-					coord: weather[0].coord,
+					city: CITIES.MELBOURNE.name,
+					temp: weather[0].current.temp,
+					weather: weather[0].current.weather[0].main,
+					humidity: weather[0].current.humidity,
+					wind: weather[0].current.wind_speed,
+					icon: weather[0].current.weather[0].icon,
+					daily: weather[0].daily,
 				},
 				sydney: {
-					city: weather[1].name,
-					temp: weather[1].main.temp,
-					weather: weather[1].weather[0].main,
-					humidity: weather[1].main.humidity,
-					wind: weather[1].wind.speed,
-					icon: weather[1].weather[0].icon,
-					coord: weather[1].coord,
+					city: CITIES.SYDNEY.name,
+					temp: weather[1].current.temp,
+					weather: weather[1].current.weather[0].main,
+					humidity: weather[1].current.humidity,
+					wind: weather[1].current.wind_speed,
+					icon: weather[1].current.weather[0].icon,
+					daily: weather[1].daily,
 				},
 				brisbane: {
-					city: weather[2].name,
-					temp: weather[2].main.temp,
-					weather: weather[2].weather[0].main,
-					humidity: weather[2].main.humidity,
-					wind: weather[2].wind.speed,
-					icon: weather[2].weather[0].icon,
-					coord: weather[2].coord,
+					city: CITIES.BRISBANE.name,
+					temp: weather[2].current.temp,
+					weather: weather[2].current.weather[0].main,
+					humidity: weather[2].current.humidity,
+					wind: weather[2].current.wind_speed,
+					icon: weather[2].current.weather[0].icon,
+					daily: weather[2].daily,
 				},
 				perth: {
-					city: weather[3].name,
-					temp: weather[3].main.temp,
-					weather: weather[3].weather[0].main,
-					humidity: weather[3].main.humidity,
-					wind: weather[3].wind.speed,
-					icon: weather[3].weather[0].icon,
-					coord: weather[3].coord,
+					city: CITIES.PERTH.name,
+					temp: weather[3].current.temp,
+					weather: weather[3].current.weather[0].main,
+					humidity: weather[3].current.humidity,
+					wind: weather[3].current.wind_speed,
+					icon: weather[3].current.weather[0].icon,
+					daily: weather[3].daily,
 				},
 			});
 		});
 
 		// getCurrentWeather((weather) => {
 		// 	this.setWeather({
-		// 		city: weather.name,
-		// 		temp: weather.main.temp,
-		// 		weather: weather.weather[0].main,
-		// 		humidity: weather.main.humidity,
-		// 		wind: weather.wind.speed,
-		// 		icon: weather.weather[0].icon,
-		// 		coord: weather.coord,
+		// 		melbourne: {
+		// 			city: weather[0].name,
+		// 			temp: weather[0].main.temp,
+		// 			weather: weather[0].weather[0].main,
+		// 			humidity: weather[0].main.humidity,
+		// 			wind: weather[0].wind.speed,
+		// 			icon: weather[0].weather[0].icon,
+		// 			coord: weather[0].coord,
+		// 		},
+		// 		sydney: {
+		// 			city: weather[1].name,
+		// 			temp: weather[1].main.temp,
+		// 			weather: weather[1].weather[0].main,
+		// 			humidity: weather[1].main.humidity,
+		// 			wind: weather[1].wind.speed,
+		// 			icon: weather[1].weather[0].icon,
+		// 			coord: weather[1].coord,
+		// 		},
+		// 		brisbane: {
+		// 			city: weather[2].name,
+		// 			temp: weather[2].main.temp,
+		// 			weather: weather[2].weather[0].main,
+		// 			humidity: weather[2].main.humidity,
+		// 			wind: weather[2].wind.speed,
+		// 			icon: weather[2].weather[0].icon,
+		// 			coord: weather[2].coord,
+		// 		},
+		// 		perth: {
+		// 			city: weather[3].name,
+		// 			temp: weather[3].main.temp,
+		// 			weather: weather[3].weather[0].main,
+		// 			humidity: weather[3].main.humidity,
+		// 			wind: weather[3].wind.speed,
+		// 			icon: weather[3].weather[0].icon,
+		// 			coord: weather[3].coord,
+		// 		},
 		// 	});
 		// });
 	}
@@ -233,7 +231,8 @@ class App extends React.Component {
 						{weather && <CurrentRight city={weather.city} />} */}
 					</CardTop>
 					<CardBottom>
-						{weather && <OtherCities weather={weather}/>}
+						{weather && <OtherCities weather={weather} />}
+						{/* <OtherCities weather={weather}/> */}
 						<DividerBottom />
 						<Forecast />
 					</CardBottom>
