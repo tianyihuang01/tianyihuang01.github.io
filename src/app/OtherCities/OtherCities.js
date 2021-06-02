@@ -1,4 +1,5 @@
 // import React from 'react';
+import {CITIES} from '../../constants/constants';
 import styled from 'styled-components';
 
 import ContainerBottom from '../../components/ContainerBottom/ContainerBottom';
@@ -33,19 +34,25 @@ const OtherCities = ({weather}) => {
 	// console.log(city);
 	const CityList = [
 		{
-			key: weather['sydney'].city,
-			temp: `${weather['sydney'].temp}°`,
-			icon: `http://openweathermap.org/img/wn/${weather['sydney'].icon}.png`,
+			key: weather[CITIES.SYDNEY.name].city,
+			temp: `${weather[CITIES.SYDNEY.name].temp}°`,
+			icon: `http://openweathermap.org/img/wn/${
+				weather[CITIES.SYDNEY.name].icon
+			}.png`,
 		},
 		{
-			key: weather['brisbane'].city,
-			temp: `${weather['brisbane'].temp}°`,
-			icon: `http://openweathermap.org/img/wn/${weather['brisbane'].icon}.png`,
+			key: weather[CITIES.BRISBANE.name].city,
+			temp: `${weather[CITIES.BRISBANE.name].temp}°`,
+			icon: `http://openweathermap.org/img/wn/${
+				weather[CITIES.BRISBANE.name].icon
+			}.png`,
 		},
 		{
-			key: weather['perth'].city,
-			temp: `${weather['perth'].temp}°`,
-			icon: `http://openweathermap.org/img/wn/${weather['perth'].icon}.png`,
+			key: weather[CITIES.PERTH.name].city,
+			temp: `${weather[CITIES.PERTH.name].temp}°`,
+			icon: `http://openweathermap.org/img/wn/${
+				weather[CITIES.PERTH.name].icon
+			}.png`,
 		},
 	];
 	return (

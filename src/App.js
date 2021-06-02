@@ -89,7 +89,7 @@ class App extends React.Component {
 
 		getCurrentAndForecast((weather) => {
 			this.setWeather({
-				melbourne: {
+				[CITIES.MELBOURNE.name]: {
 					city: CITIES.MELBOURNE.name,
 					temp: weather[0].current.temp,
 					weather: weather[0].current.weather[0].main,
@@ -98,7 +98,7 @@ class App extends React.Component {
 					icon: weather[0].current.weather[0].icon,
 					daily: weather[0].daily,
 				},
-				sydney: {
+				[CITIES.SYDNEY.name]: {
 					city: CITIES.SYDNEY.name,
 					temp: weather[1].current.temp,
 					weather: weather[1].current.weather[0].main,
@@ -107,7 +107,7 @@ class App extends React.Component {
 					icon: weather[1].current.weather[0].icon,
 					daily: weather[1].daily,
 				},
-				brisbane: {
+				[CITIES.BRISBANE.name]: {
 					city: CITIES.BRISBANE.name,
 					temp: weather[2].current.temp,
 					weather: weather[2].current.weather[0].main,
@@ -116,7 +116,7 @@ class App extends React.Component {
 					icon: weather[2].current.weather[0].icon,
 					daily: weather[2].daily,
 				},
-				perth: {
+				[CITIES.PERTH.name]: {
 					city: CITIES.PERTH.name,
 					temp: weather[3].current.temp,
 					weather: weather[3].current.weather[0].main,
@@ -151,13 +151,15 @@ class App extends React.Component {
 					<CardTop>
 						{weather && (
 							<CurrentLeft
-								temp={weather['melbourne'].temp}
-								weather={weather['melbourne'].weather}
-								humidity={weather['melbourne'].humidity}
-								wind={weather['melbourne'].wind}
+								temp={weather[CITIES.MELBOURNE.name].temp}
+								weather={weather[CITIES.MELBOURNE.name].weather}
+								humidity={weather[CITIES.MELBOURNE.name].humidity}
+								wind={weather[CITIES.MELBOURNE.name].wind}
 							/>
 						)}
-						{weather && <CurrentRight city={weather['melbourne'].city} />}
+						{weather && (
+							<CurrentRight city={weather[CITIES.MELBOURNE.name].city} />
+						)}
 						{/* {false && (
 							<CurrentLeft
 								temp="null"
@@ -181,7 +183,9 @@ class App extends React.Component {
 						{weather && <OtherCities weather={weather} />}
 						{/* <OtherCities weather={weather}/> */}
 						<DividerBottom />
-						{weather && <Forecast daily={weather['melbourne'].daily} />}
+						{weather && (
+							<Forecast daily={weather[CITIES.MELBOURNE.name].daily} />
+						)}
 						{/* <Forecast /> */}
 					</CardBottom>
 				</Card>
