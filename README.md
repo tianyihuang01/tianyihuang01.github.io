@@ -2,6 +2,15 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+The Technology stack used:
+* HTML5, CSS, JavaScript (Vanilla, ES6)
+* **Styling:** Flexbox, styled-components
+* **API:** [OpenWeatherAPI](https://openweathermap.org/api), 
+* **API Call:** XMLHttpRequest
+
+
+***
+
 ## Available Scripts
 
 In the project directory, you can run:
