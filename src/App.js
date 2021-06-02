@@ -86,18 +86,6 @@ class App extends React.Component {
 	componentDidMount() {
 		// getCurrentWeather(this.setWeather);
 		// getCurrentAndForecast(this.setWeather);
-		// fetch().then((weather) => (
-		// 	this.setWeather(weather)
-		// ));
-
-		// getCurrentWeather((weather) => {
-		// 	this.setWeather({
-		// 		melbourne: weather[0],
-		// 		sydney: weather[1],
-		// 		brisbane: weather[2],
-		// 		perth: weather[3]
-		// 	});
-		// });
 
 		getCurrentAndForecast((weather) => {
 			this.setWeather({
@@ -139,47 +127,6 @@ class App extends React.Component {
 				},
 			});
 		});
-
-		// getCurrentWeather((weather) => {
-		// 	this.setWeather({
-		// 		melbourne: {
-		// 			city: weather[0].name,
-		// 			temp: weather[0].main.temp,
-		// 			weather: weather[0].weather[0].main,
-		// 			humidity: weather[0].main.humidity,
-		// 			wind: weather[0].wind.speed,
-		// 			icon: weather[0].weather[0].icon,
-		// 			coord: weather[0].coord,
-		// 		},
-		// 		sydney: {
-		// 			city: weather[1].name,
-		// 			temp: weather[1].main.temp,
-		// 			weather: weather[1].weather[0].main,
-		// 			humidity: weather[1].main.humidity,
-		// 			wind: weather[1].wind.speed,
-		// 			icon: weather[1].weather[0].icon,
-		// 			coord: weather[1].coord,
-		// 		},
-		// 		brisbane: {
-		// 			city: weather[2].name,
-		// 			temp: weather[2].main.temp,
-		// 			weather: weather[2].weather[0].main,
-		// 			humidity: weather[2].main.humidity,
-		// 			wind: weather[2].wind.speed,
-		// 			icon: weather[2].weather[0].icon,
-		// 			coord: weather[2].coord,
-		// 		},
-		// 		perth: {
-		// 			city: weather[3].name,
-		// 			temp: weather[3].main.temp,
-		// 			weather: weather[3].weather[0].main,
-		// 			humidity: weather[3].main.humidity,
-		// 			wind: weather[3].wind.speed,
-		// 			icon: weather[3].weather[0].icon,
-		// 			coord: weather[3].coord,
-		// 		},
-		// 	});
-		// });
 	}
 
 	render() {
@@ -234,7 +181,8 @@ class App extends React.Component {
 						{weather && <OtherCities weather={weather} />}
 						{/* <OtherCities weather={weather}/> */}
 						<DividerBottom />
-						<Forecast />
+						{weather && <Forecast daily={weather['melbourne'].daily} />}
+						{/* <Forecast /> */}
 					</CardBottom>
 				</Card>
 			</Container>

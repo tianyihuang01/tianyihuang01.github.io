@@ -33,48 +33,73 @@ const ForecastTemp = styled.div`
 	margin: 0.6em 0 0 0;
 `;
 
-const WeekList = [
-	{
-		key: 'MON',
-		img: 'http://openweathermap.org/img/wn/02d.png',
-		temp: '17°',
-	},
-	{
-		key: 'TUE',
-		img: 'http://openweathermap.org/img/wn/02d.png',
-		temp: '17°',
-	},
-	{
-		key: 'WED',
-		img: 'http://openweathermap.org/img/wn/02d.png',
-		temp: '17°',
-	},
-	{
-		key: 'THU',
-		img: 'http://openweathermap.org/img/wn/02d.png',
-		temp: '17°',
-	},
-	{
-		key: 'FRI',
-		img: 'http://openweathermap.org/img/wn/02d.png',
-		temp: '17°',
-	},
-];
 
-const Forecast = () => (
-	<ContainerBottom>
-		<HeaderBottom>Forecast</HeaderBottom>
-		<ContainerForecast>
-			{WeekList.map(({ key, img, temp }) => (
-				<ContainerWeather key={key}>
-					<ForecastWeek>{key}</ForecastWeek>
-					<img src={img} alt="Clouds" />
-					<ForecastTemp>{temp}</ForecastTemp>
-				</ContainerWeather>
-			))}
-		</ContainerForecast>
-	</ContainerBottom>
-);
+const weekday = () => {
+	const d = new Date();
+	const n = d.getDay();
+	const weekdayList = [
+		'MON',
+		'TUE',
+		'WED',
+		'THU',
+		'FRI',
+		'SAT',
+		'SUN',
+		'MON',
+		'TUE',
+		'WED',
+		'THU',
+		'FRI',
+		'SAT',
+		'SUN'
+	];
+	return weekdayList.slice(n, n+5);
+};
+
+const Forecast = ({daily}) => {
+	const weekdayList = weekday();
+	const WeekList = [
+		{
+			key: weekdayList[0],
+			img: `http://openweathermap.org/img/wn/${daily[0].weather[0].icon}.png`,
+			temp: `${daily[0].temp.day}°`,
+		},
+		{
+			key: weekdayList[1],
+			img: `http://openweathermap.org/img/wn/${daily[1].weather[0].icon}.png`,
+			temp: `${daily[1].temp.day}°`,
+		},
+		{
+			key: weekdayList[2],
+			img: `http://openweathermap.org/img/wn/${daily[2].weather[0].icon}.png`,
+			temp: `${daily[2].temp.day}°`,
+		},
+		{
+			key: weekdayList[3],
+			img: `http://openweathermap.org/img/wn/${daily[3].weather[0].icon}.png`,
+			temp: `${daily[3].temp.day}°`,
+		},
+		{
+			key: weekdayList[4],
+			img: `http://openweathermap.org/img/wn/${daily[4].weather[0].icon}.png`,
+			temp: `${daily[4].temp.day}°`,
+		},
+	];
+	return (
+		<ContainerBottom>
+			<HeaderBottom>Forecast</HeaderBottom>
+			<ContainerForecast>
+				{WeekList.map(({ key, img, temp }) => (
+					<ContainerWeather key={key}>
+						<ForecastWeek>{key}</ForecastWeek>
+						<img src={img} alt="Clouds" />
+						<ForecastTemp>{temp}</ForecastTemp>
+					</ContainerWeather>
+				))}
+			</ContainerForecast>
+		</ContainerBottom>
+	);
+} ;
 
 export default Forecast;
 
