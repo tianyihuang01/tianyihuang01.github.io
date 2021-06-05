@@ -103,28 +103,3 @@ const Forecast = ({daily}) => {
 
 export default Forecast;
 
-/* <ContainerWeather>
-	<ForecastWeek>MON</ForecastWeek>
-	<img src="http://openweathermap.org/img/wn/02d.png" alt="Clouds" />
-	<ForecastTemp>17°</ForecastTemp>
-</ContainerWeather>
-<ContainerWeather>
-	<ForecastWeek>TUE</ForecastWeek>
-	<img src="http://openweathermap.org/img/wn/02d.png" alt="Clouds" />
-	<ForecastTemp>17°</ForecastTemp>
-</ContainerWeather>
-<ContainerWeather>
-	<ForecastWeek>WED</ForecastWeek>
-	<img src="http://openweathermap.org/img/wn/02d.png" alt="Clouds" />
-	<ForecastTemp>17°</ForecastTemp>
-</ContainerWeather>
-<ContainerWeather>
-	<ForecastWeek>THU</ForecastWeek>
-	<img src="http://openweathermap.org/img/wn/02d.png" alt="Clouds" />
-	<ForecastTemp>17°</ForecastTemp>
-</ContainerWeather>
-<ContainerWeather>
-	<ForecastWeek>FRI</ForecastWeek>
-	<img src="http://openweathermap.org/img/wn/02d.png" alt="Clouds" />
-	<ForecastTemp>17°</ForecastTemp>
-</ContainerWeather> */
