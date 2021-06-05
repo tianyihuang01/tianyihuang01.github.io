@@ -1,7 +1,7 @@
 import { CITIES, API } from '../../constants/constants';
 
 const getCurrentWeather = (setWeather) => {
-	const base = 'http://api.openweathermap.org/data/2.5/weather?';
+	const base = 'https://api.openweathermap.org/data/2.5/weather?';
 	// const city = Melbourne;
 	const cities = [
 		CITIES.MELBOURNE.id,

@@ -1,7 +1,7 @@
 import { CITIES, API } from '../../constants/constants';
 
 const getCurrentAndForecast = (setWeather) => {
-	const base = 'http://api.openweathermap.org/data/2.5/onecall?';
+	const base = 'https://api.openweathermap.org/data/2.5/onecall?';
 	const { MELBOURNE, SYDNEY, BRISBANE, PERTH } = CITIES;
 	const cities = [
 		{ lat: MELBOURNE.coord.lat, lon: MELBOURNE.coord.lon },
