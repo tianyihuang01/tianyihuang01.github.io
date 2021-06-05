@@ -35,4 +35,5 @@ const getCurrentAndForecast = (setWeather) => {
 	})(0, cities.length);
 };
 
+
 export default getCurrentAndForecast;

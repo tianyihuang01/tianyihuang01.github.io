@@ -71,18 +71,3 @@ const OtherCities = ({weather}) => {
 
 export default OtherCities;
 
-/* <ContainerCities>
-	<CityName>Sydeny</CityName>
-	<CityTemp>17°</CityTemp>
-	<img src="http://openweathermap.org/img/wn/02d.png" alt="Clouds" />
-</ContainerCities>
-<ContainerCities>
-	<CityName>Brisbane</CityName>
-	<CityTemp>20°</CityTemp>
-	<img src="http://openweathermap.org/img/wn/02d.png" alt="Clouds" />
-</ContainerCities>
-<ContainerCities>
-	<CityName>Perth</CityName>
-	<CityTemp>17°</CityTemp>
-	<img src="http://openweathermap.org/img/wn/03d.png" alt="Clouds" />
-</ContainerCities> */
