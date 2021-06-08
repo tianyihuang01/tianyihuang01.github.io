@@ -45,11 +45,11 @@ const TitleBottom = styled.span`
 	margin-bottom: 0.75rem;
 `;
 
-const Current = ({temp, weather, humidity, wind}) => (
+const Current = ({ temp, weather, humidity, wind }) => (
 	<ContainerTop>
 		<CurrentTemperature>
 			<span>
-				{Math.trunc(temp)}<span>&nbsp;</span>
+				<span>{Math.trunc(temp)}</span>
 				<span>°</span>
 			</span>
 		</CurrentTemperature>
