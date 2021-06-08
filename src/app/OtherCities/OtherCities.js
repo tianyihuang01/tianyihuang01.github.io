@@ -35,21 +35,21 @@ const OtherCities = ({weather}) => {
 	const CityList = [
 		{
 			key: weather[CITIES.SYDNEY.name].city,
-			temp: `${weather[CITIES.SYDNEY.name].temp}°`,
+			temp: `${Math.trunc(weather[CITIES.SYDNEY.name].temp)}°`,
 			icon: `http://openweathermap.org/img/wn/${
 				weather[CITIES.SYDNEY.name].icon
 			}.png`,
 		},
 		{
 			key: weather[CITIES.BRISBANE.name].city,
-			temp: `${weather[CITIES.BRISBANE.name].temp}°`,
+			temp: `${Math.trunc(weather[CITIES.BRISBANE.name].temp)}°`,
 			icon: `http://openweathermap.org/img/wn/${
 				weather[CITIES.BRISBANE.name].icon
 			}.png`,
 		},
 		{
 			key: weather[CITIES.PERTH.name].city,
-			temp: `${weather[CITIES.PERTH.name].temp}°`,
+			temp: `${Math.trunc(weather[CITIES.PERTH.name].temp)}°`,
 			icon: `http://openweathermap.org/img/wn/${
 				weather[CITIES.PERTH.name].icon
 			}.png`,
