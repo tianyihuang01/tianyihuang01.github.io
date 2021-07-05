@@ -49,8 +49,7 @@ const Current = ({ temp, weather, humidity, wind }) => (
 	<ContainerTop>
 		<CurrentTemperature>
 			<span>
-				<span>{Math.trunc(temp)}</span>
-				<span>°</span>
+				<span>{temp}</span>
 			</span>
 		</CurrentTemperature>
 		<CurrentWeather>
@@ -60,13 +59,13 @@ const Current = ({ temp, weather, humidity, wind }) => (
 			<div>
 				<TitleBottom>HUMIDITY</TitleBottom>
 				<br />
-				<span>{humidity} %</span>
+				<span>{humidity}</span>
 			</div>
 			<Divider />
 			<div>
 				<TitleBottom>WIND</TitleBottom>
 				<br />
-				<span>{wind} M/S</span>
+				<span>{wind}</span>
 			</div>
 		</ContainerBottom>
 	</ContainerTop>

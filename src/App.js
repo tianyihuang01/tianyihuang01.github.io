@@ -2,6 +2,7 @@
 // import './App.css';
 import React from 'react';
 import styled from 'styled-components';
+import { nanoid } from 'nanoid';
 
 import CurrentLeft from './app/CurrentLeft/CurrentLeft';
 import Forecast from './app/Forecast/Forecast';
@@ -11,6 +12,7 @@ import CurrentRight from './app/CurrentRight/CurrentRight';
 // import getCurrentWeather from './api/getCurrentWeather/getCurrentWeather';
 import getCurrentAndForecast from './api/getCurrentAndForecast/getCurrentAndForecast';
 import { CITIES } from './constants/constants';
+import { weekday, weekList } from './utils/weekConfig';
 
 // import ContainerBottom from './components/ContainerBottom/ContainerBottom';
 
@@ -57,6 +59,30 @@ const DividerBottom = styled.div`
 	background-color: rgba(0, 0, 0, 0.1);
 `;
 
+const cities = [
+	{
+		name: CITIES.MELBOURNE.name,
+		lat: CITIES.MELBOURNE.coord.lat,
+		lon: CITIES.MELBOURNE.coord.lon,
+	},
+	{
+		name: CITIES.SYDNEY.name,
+		lat: CITIES.SYDNEY.coord.lat,
+		lon: CITIES.SYDNEY.coord.lon,
+	},
+	{
+		name: CITIES.BRISBANE.name,
+		lat: CITIES.BRISBANE.coord.lat,
+		lon: CITIES.BRISBANE.coord.lon,
+	},
+	{
+		name: CITIES.PERTH.name,
+		lat: CITIES.PERTH.coord.lat,
+		lon: CITIES.PERTH.coord.lon,
+	},
+];
+
+const defaultCity = CITIES.MELBOURNE.name;
 
 class App extends React.Component {
 	constructor(props) {
@@ -64,6 +90,7 @@ class App extends React.Component {
 
 		this.state = {
 			weather: undefined,
+			defaultWeather: undefined,
 		};
 
 		this.setWeather = this.setWeather.bind(this);
@@ -72,60 +99,39 @@ class App extends React.Component {
 	setWeather(newWeather) {
 		this.setState({
 			weather: newWeather,
+			defaultWeather: newWeather[this.defaultIndex],
 		});
 		// console.log(newWeather);
 	}
 
-	componentDidMount() {
-		// getCurrentWeather(this.setWeather);
-		// getCurrentAndForecast(this.setWeather);
+	defaultIndex = cities.findIndex((item) => item.name === defaultCity);
 
-		getCurrentAndForecast((weather) => {
-			this.setWeather({
-				[CITIES.MELBOURNE.name]: {
-					city: CITIES.MELBOURNE.name,
-					temp: weather[0].current.temp,
-					weather: weather[0].current.weather[0].main,
-					humidity: weather[0].current.humidity,
-					wind: weather[0].current.wind_speed,
-					icon: weather[0].current.weather[0].icon,
-					daily: weather[0].daily,
-				},
-				[CITIES.SYDNEY.name]: {
-					city: CITIES.SYDNEY.name,
-					temp: weather[1].current.temp,
-					weather: weather[1].current.weather[0].main,
-					humidity: weather[1].current.humidity,
-					wind: weather[1].current.wind_speed,
-					icon: weather[1].current.weather[0].icon,
-					daily: weather[1].daily,
-				},
-				[CITIES.BRISBANE.name]: {
-					city: CITIES.BRISBANE.name,
-					temp: weather[2].current.temp,
-					weather: weather[2].current.weather[0].main,
-					humidity: weather[2].current.humidity,
-					wind: weather[2].current.wind_speed,
-					icon: weather[2].current.weather[0].icon,
-					daily: weather[2].daily,
-				},
-				[CITIES.PERTH.name]: {
-					city: CITIES.PERTH.name,
-					temp: weather[3].current.temp,
-					weather: weather[3].current.weather[0].main,
-					humidity: weather[3].current.humidity,
-					wind: weather[3].current.wind_speed,
-					icon: weather[3].current.weather[0].icon,
-					daily: weather[3].daily,
-				},
+	componentDidMount() {
+		let output = [];
+
+		getCurrentAndForecast(cities, (data) => {
+			data.forEach((item, index) => {
+				output.push({
+					id: nanoid(),
+					name: cities[index].name,
+					temp: `${Math.trunc(item.current.temp)}°`,
+					weather: item.current.weather[0].main,
+					humidity: `${item.current.humidity} %`,
+					wind: `${item.current.wind_speed} M/S`,
+					icon: `http://openweathermap.org/img/wn/${item.current.weather[0].icon}.png`,
+					daily: weekList(weekday(), item.daily),
+				});
+				console.log(output);
 			});
+			this.setWeather(output);
 		});
 	}
 
 	render() {
-		const { weather } = this.state;
+		const { weather, defaultWeather } = this.state;
 		// if (weather) {
 		// 	console.log(weather);
+		// 	console.log(weather.length);
 		// }
 
 		return (
@@ -134,31 +140,18 @@ class App extends React.Component {
 					<CardTop>
 						{weather && (
 							<CurrentLeft
-								temp={weather[CITIES.MELBOURNE.name].temp}
-								weather={weather[CITIES.MELBOURNE.name].weather}
-								humidity={weather[CITIES.MELBOURNE.name].humidity}
-								wind={weather[CITIES.MELBOURNE.name].wind}
+								temp={defaultWeather.temp}
+								weather={defaultWeather.weather}
+								humidity={defaultWeather.humidity}
+								wind={defaultWeather.wind}
 							/>
 						)}
-						{weather && (
-							<CurrentRight city={weather[CITIES.MELBOURNE.name].city} />
-						)}
-						{/* {false && (
-							<CurrentLeft
-								temp="null"
-								weather="null"
-								humidity="null"
-								wind="null"
-							/>
-						)}
-						{false && <CurrentRight city="null" />} */}
+						{weather && <CurrentRight city={defaultWeather.name} />}
 					</CardTop>
 					<CardBottom>
 						{weather && <OtherCities weather={weather} />}
 						<DividerBottom />
-						{weather && (
-							<Forecast daily={weather[CITIES.MELBOURNE.name].daily} />
-						)}
+						{weather && <Forecast daily={defaultWeather.daily} />}
 					</CardBottom>
 				</Card>
 			</Container>

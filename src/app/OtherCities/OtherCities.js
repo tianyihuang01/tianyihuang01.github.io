@@ -1,5 +1,5 @@
 // import React from 'react';
-import {CITIES} from '../../constants/constants';
+// import { CITIES } from '../../constants/constants';
 import styled from 'styled-components';
 
 import ContainerBottom from '../../components/ContainerBottom/ContainerBottom';
@@ -30,44 +30,46 @@ const CityTemp = styled.div`
 	width: 67px;
 `;
 
-const OtherCities = ({weather}) => {
-	// console.log(city);
-	const CityList = [
-		{
-			key: weather[CITIES.SYDNEY.name].city,
-			temp: `${Math.trunc(weather[CITIES.SYDNEY.name].temp)}°`,
-			icon: `http://openweathermap.org/img/wn/${
-				weather[CITIES.SYDNEY.name].icon
-			}.png`,
-		},
-		{
-			key: weather[CITIES.BRISBANE.name].city,
-			temp: `${Math.trunc(weather[CITIES.BRISBANE.name].temp)}°`,
-			icon: `http://openweathermap.org/img/wn/${
-				weather[CITIES.BRISBANE.name].icon
-			}.png`,
-		},
-		{
-			key: weather[CITIES.PERTH.name].city,
-			temp: `${Math.trunc(weather[CITIES.PERTH.name].temp)}°`,
-			icon: `http://openweathermap.org/img/wn/${
-				weather[CITIES.PERTH.name].icon
-			}.png`,
-		},
-	];
+const OtherCities = ({ weather }) => {
+	console.log(weather);
+	// const CityList = [
+	// 	{
+	// 		key: weather[CITIES.SYDNEY.name].city,
+	// 		temp: `${Math.trunc(weather[CITIES.SYDNEY.name].temp)}°`,
+	// 		icon: `http://openweathermap.org/img/wn/${
+	// 			weather[CITIES.SYDNEY.name].icon
+	// 		}.png`,
+	// 	},
+	// 	{
+	// 		key: weather[CITIES.BRISBANE.name].city,
+	// 		temp: `${Math.trunc(weather[CITIES.BRISBANE.name].temp)}°`,
+	// 		icon: `http://openweathermap.org/img/wn/${
+	// 			weather[CITIES.BRISBANE.name].icon
+	// 		}.png`,
+	// 	},
+	// 	{
+	// 		key: weather[CITIES.PERTH.name].city,
+	// 		temp: `${Math.trunc(weather[CITIES.PERTH.name].temp)}°`,
+	// 		icon: `http://openweathermap.org/img/wn/${
+	// 			weather[CITIES.PERTH.name].icon
+	// 		}.png`,
+	// 	},
+	// ];
 	return (
 		<ContainerBottom>
 			<HeaderBottom>Other Cities</HeaderBottom>
-			{CityList.map((item) => (
-				<ContainerCities key={item.key}>
-					<CityName>{item.key}</CityName>
-					<CityTemp>{item.temp}</CityTemp>
-					<img src={item.icon} alt="Clouds" />
-				</ContainerCities>
-			))}
+			{weather.map((item) => {
+				if (item)
+					return (
+						<ContainerCities key={item.id}>
+							<CityName>{item.name}</CityName>
+							<CityTemp>{item.temp}</CityTemp>
+							<img src={item.icon} alt="Clouds" />
+						</ContainerCities>
+					);
+			})}
 		</ContainerBottom>
 	);
 };
 
 export default OtherCities;
-

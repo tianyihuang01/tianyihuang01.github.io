@@ -1,15 +1,7 @@
-import { CITIES, API } from '../../constants/constants';
+import { API } from '../../constants/constants';
 
-const getCurrentAndForecast = (setWeather) => {
+const getCurrentAndForecast = (cities, setWeather) => {
 	const base = 'https://api.openweathermap.org/data/2.5/onecall?';
-	const { MELBOURNE, SYDNEY, BRISBANE, PERTH } = CITIES;
-	const cities = [
-		{ lat: MELBOURNE.coord.lat, lon: MELBOURNE.coord.lon },
-		{ lat: SYDNEY.coord.lat, lon: SYDNEY.coord.lon },
-		{ lat: BRISBANE.coord.lat, lon: BRISBANE.coord.lon },
-		{ lat: PERTH.coord.lat, lon: PERTH.coord.lon },
-	];
-	// const api = API;
 	const units = 'metric';
 	const exclude = 'minutely,hourly,alerts';
 	let data = [];
@@ -18,6 +10,7 @@ const getCurrentAndForecast = (setWeather) => {
 
 	(function loop(i, length) {
 		if (i >= length) {
+			// console.log(data);
 			setWeather(data);
 			return;
 		}
@@ -34,6 +27,5 @@ const getCurrentAndForecast = (setWeather) => {
 		xhttp.send();
 	})(0, cities.length);
 };
-
 
 export default getCurrentAndForecast;
