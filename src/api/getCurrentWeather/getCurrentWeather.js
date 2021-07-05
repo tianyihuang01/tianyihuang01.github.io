@@ -35,4 +35,3 @@ const getCurrentWeather = (setWeather) => {
 };
 
 export default getCurrentWeather;
-

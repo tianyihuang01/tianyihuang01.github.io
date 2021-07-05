@@ -38,7 +38,7 @@ const Card = styled.div`
 const CardTop = styled.div`
 	display: flex;
 	flex-direction: row;
-	padding: 64px 0;
+	padding: ${(props) => (props.padding ? '80px 80px' : '64px 0')};
 	background-image: url(https://i.imgur.com/GhQZhaO.jpg);
 	background-size: cover;
 	border-top-left-radius: 32px;
@@ -98,7 +98,7 @@ class App extends React.Component {
 
 	setWeather(newWeather) {
 		this.setState({
-			weather: newWeather,
+			weather: newWeather.filter((item) => item.name !== defaultCity),
 			defaultWeather: newWeather[this.defaultIndex],
 		});
 		// console.log(newWeather);
@@ -134,24 +134,34 @@ class App extends React.Component {
 		// 	console.log(weather.length);
 		// }
 
+		if (!weather) {
+			// return 'LOADING......';
+			return (
+				<Container>
+					<Card>
+						<CardTop padding>LOADING......</CardTop>
+						<CardBottom>LOADING......</CardBottom>
+					</Card>
+				</Container>
+			);
+		}
+
 		return (
 			<Container>
 				<Card>
 					<CardTop>
-						{weather && (
-							<CurrentLeft
-								temp={defaultWeather.temp}
-								weather={defaultWeather.weather}
-								humidity={defaultWeather.humidity}
-								wind={defaultWeather.wind}
-							/>
-						)}
-						{weather && <CurrentRight city={defaultWeather.name} />}
+						<CurrentLeft
+							temp={defaultWeather.temp}
+							weather={defaultWeather.weather}
+							humidity={defaultWeather.humidity}
+							wind={defaultWeather.wind}
+						/>
+						<CurrentRight city={defaultWeather.name} />
 					</CardTop>
 					<CardBottom>
-						{weather && <OtherCities weather={weather} />}
+						<OtherCities weather={weather} />
 						<DividerBottom />
-						{weather && <Forecast daily={defaultWeather.daily} />}
+						<Forecast daily={defaultWeather.daily} />
 					</CardBottom>
 				</Card>
 			</Container>
