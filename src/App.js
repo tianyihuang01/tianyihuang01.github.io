@@ -137,7 +137,7 @@ class App extends React.Component {
 				weather: data.current.weather[0].main,
 				humidity: `${data.current.humidity}%`,
 				wind: `${data.current.wind_speed}M/S`,
-				icon: `http://openweathermap.org/img/wn/${data.current.weather[0].icon}.png`,
+				icon: `https://openweathermap.org/img/wn/${data.current.weather[0].icon}.png`,
 				daily: weekList(weekday(), data.daily),
 			});
 			console.log('API CALLED!!');
