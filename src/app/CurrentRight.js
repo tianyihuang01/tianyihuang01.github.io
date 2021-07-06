@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import ContainerTop from '../../components/ContainerTop/ContainerTop';
+import ContainerTop from '../components/ContainerTop';
 
 const CityName = styled.div`
 	margin-top: 16px;
@@ -15,7 +15,7 @@ const CityName = styled.div`
 	}
 `;
 
-const CurrentRight = ({city}) => (
+const CurrentRight = ({ city }) => (
 	<ContainerTop>
 		<CityName>{city}</CityName>
 	</ContainerTop>

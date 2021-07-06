@@ -1,8 +1,8 @@
 // import React from 'react';
 import styled from 'styled-components';
 
-import ContainerBottom from '../../components/ContainerBottom/ContainerBottom';
-import HeaderBottom from '../HeaderBottom/HeaderBottom';
+import ContainerBottom from '../components/ContainerBottom';
+import HeaderBottom from './HeaderBottom';
 
 const ContainerForecast = styled.div`
 	display: flex;

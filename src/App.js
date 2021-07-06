@@ -4,13 +4,13 @@ import React from 'react';
 import styled from 'styled-components';
 import { nanoid } from 'nanoid';
 
-import CurrentLeft from './app/CurrentLeft/CurrentLeft';
-import Forecast from './app/Forecast/Forecast';
-import OtherCities from './app/OtherCities/OtherCities';
-import CurrentRight from './app/CurrentRight/CurrentRight';
+import CurrentLeft from './app/CurrentLeft';
+import Forecast from './app/Forecast';
+import OtherCities from './app/OtherCities';
+import CurrentRight from './app/CurrentRight';
 
 // import getCurrentWeather from './api/getCurrentWeather/getCurrentWeather';
-import getCurrentAndForecast from './api/getCurrentAndForecast/getCurrentAndForecast';
+import getCurrentAndForecast from './api/getCurrentAndForecast';
 import { CITIES } from './constants/constants';
 import { weekday, weekList } from './utils/weekConfig';
 
@@ -50,7 +50,7 @@ const CardTop = styled.div`
 const CardBottom = styled.div`
 	display: flex;
 	flex-direction: row;
-	padding: 36px 0;
+	padding: ${(props) => (props.padding ? '80px 80px' : '36px 0')};
 }
 `;
 
@@ -140,7 +140,7 @@ class App extends React.Component {
 				<Container>
 					<Card>
 						<CardTop padding>LOADING......</CardTop>
-						<CardBottom>LOADING......</CardBottom>
+						<CardBottom padding>LOADING......</CardBottom>
 					</Card>
 				</Container>
 			);

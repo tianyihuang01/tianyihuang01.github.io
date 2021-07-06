@@ -2,8 +2,8 @@
 // import { CITIES } from '../../constants/constants';
 import styled from 'styled-components';
 
-import ContainerBottom from '../../components/ContainerBottom/ContainerBottom';
-import HeaderBottom from '../HeaderBottom/HeaderBottom';
+import ContainerBottom from '../components/ContainerBottom';
+import HeaderBottom from './HeaderBottom';
 
 const ContainerCities = styled.div`
 	display: flex;

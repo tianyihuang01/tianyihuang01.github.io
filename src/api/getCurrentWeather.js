@@ -1,4 +1,4 @@
-import { CITIES, API } from '../../constants/constants';
+import { CITIES, API } from '../constants/constants';
 
 const getCurrentWeather = (setWeather) => {
 	const base = 'https://api.openweathermap.org/data/2.5/weather?';
