@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { BREAKPOINT3, BREAKPOINT1, BREAKPOINT2 } from '../constants/constants';
+import { BREAKPOINT2 } from '../constants/constants';
 import ContainerBottom from '../components/ContainerBottom';
 import HeaderBottom from './HeaderBottom';
 
@@ -18,13 +18,10 @@ const ContainerCities = styled.div`
 
 const CityName = styled.h3`
 	font-weight: 400;
-	width: 70px;
+	width: 95px;
 	letter-spacing: 1px;
 	margin: 0px 10px;
 	cursor: pointer;
-	@media only screen and (max-width: ${BREAKPOINT1}px) {
-		width: 70px;
-	}
 `;
 
 const CityTemp = styled.div`
@@ -32,9 +29,6 @@ const CityTemp = styled.div`
 	color: rgba(0, 0, 0, 0.5);
 	margin-right: 10px;
 	width: 40px;
-	@media only screen and (max-width: ${BREAKPOINT3}px) {
-		width: 40px;
-	}
 `;
 
 const CityDesc = styled.h3`
