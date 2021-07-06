@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-
+import { BREAKPOINT2 } from '../constants/constants';
 import ContainerBottom from '../components/ContainerBottom';
 import HeaderBottom from './HeaderBottom';
 
@@ -9,6 +9,16 @@ const ContainerForecast = styled.div`
 	justify-content: space-between;
 	min-width: 280px;
 	justify-content: center;
+
+	@media only screen and (max-width: ${BREAKPOINT2}px) {
+		min-width: auto;
+	}
+
+	${
+		'' /* @media only screen and (max-width: ${BREAKPOINT2}px) and (min-width: ${BREAKPOINT1}px) {
+		min-width: auto;
+	} */
+	}
 `;
 
 const ContainerWeather = styled.div`
@@ -18,6 +28,10 @@ const ContainerWeather = styled.div`
 	text-align: center;
 	width: 50px;
 	margin: 0 10px;
+
+	@media only screen and (max-width: ${BREAKPOINT2}px) {
+		display: ${(props) => (props.display >= 3 ? 'none' : 'block')};
+	}
 `;
 
 const ForecastWeek = styled.h3`
@@ -38,13 +52,15 @@ const Forecast = ({ daily }) => {
 		<ContainerBottom>
 			<HeaderBottom>Forecast</HeaderBottom>
 			<ContainerForecast>
-				{daily.map(({ key, img, temp }) => (
-					<ContainerWeather key={key}>
-						<ForecastWeek>{key}</ForecastWeek>
-						<img src={img} alt="Clouds" />
-						<ForecastTemp>{temp}</ForecastTemp>
-					</ContainerWeather>
-				))}
+				{daily.map(({ key, img, temp }, index) => {
+					return (
+						<ContainerWeather key={key} display={index}>
+							<ForecastWeek>{key}</ForecastWeek>
+							<img src={img} alt="Clouds" />
+							<ForecastTemp>{temp}</ForecastTemp>
+						</ContainerWeather>
+					);
+				})}
 			</ContainerForecast>
 		</ContainerBottom>
 	);

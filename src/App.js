@@ -8,7 +8,7 @@ import OtherCities from './app/OtherCities';
 import CurrentRight from './app/CurrentRight';
 
 import getCurrentAndForecast from './api/getCurrentAndForecast';
-import { CITIES, BREAKPOINT } from './constants/constants';
+import { CITIES, BREAKPOINT3 } from './constants/constants';
 import { weekday, weekList } from './utils/weekConfig';
 
 const Container = styled.div`
@@ -33,6 +33,7 @@ const Card = styled.div`
 const CardTop = styled.div`
 	display: flex;
 	flex-direction: row;
+	justify-content: center;
 	padding: ${(props) => (props.padding ? '80px 80px' : '64px 0')};
 	background-image: url(https://i.imgur.com/GhQZhaO.jpg);
 	background-size: cover;
@@ -41,7 +42,7 @@ const CardTop = styled.div`
 	color: #fff;
 	position: relative;
 
-	@media only screen and (max-width: ${BREAKPOINT}px) {
+	@media only screen and (max-width: ${BREAKPOINT3}px) {
 		flex-direction: column-reverse;
 	}
 `;
@@ -51,7 +52,7 @@ const CardBottom = styled.div`
 	flex-direction: row;
 	padding: ${(props) => (props.padding ? '80px 80px' : '36px 0')};
 	
-	@media only screen and (max-width: ${BREAKPOINT}px) {
+	@media only screen and (max-width: ${BREAKPOINT3}px) {
 		flex-direction: column;
 	}
 }
@@ -61,7 +62,7 @@ const DividerBottom = styled.hr`
 	width: 2px;
 	background-color: rgba(0, 0, 0, 0.1);
 
-	@media only screen and (max-width: ${BREAKPOINT}px) {
+	@media only screen and (max-width: ${BREAKPOINT3}px) {
 		width: 90%;
 	}
 `;
@@ -128,8 +129,8 @@ class App extends React.Component {
 					name: cities[index].name,
 					temp: `${Math.trunc(item.current.temp)}°`,
 					weather: item.current.weather[0].main,
-					humidity: `${item.current.humidity} %`,
-					wind: `${item.current.wind_speed} M/S`,
+					humidity: `${item.current.humidity}%`,
+					wind: `${item.current.wind_speed}M/S`,
 					icon: `http://openweathermap.org/img/wn/${item.current.weather[0].icon}.png`,
 					daily: weekList(weekday(), item.daily),
 				});

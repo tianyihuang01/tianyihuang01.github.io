@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { BREAKPOINT } from '../constants/constants';
+import { BREAKPOINT3, BREAKPOINT1 } from '../constants/constants';
 import ContainerBottom from '../components/ContainerBottom';
 import HeaderBottom from './HeaderBottom';
 
@@ -18,18 +18,21 @@ const ContainerCities = styled.div`
 
 const CityName = styled.h3`
 	font-weight: 400;
-	width: 110px;
+	width: 70px;
 	letter-spacing: 1px;
 	margin: 0px 10px;
 	cursor: pointer;
+	@media only screen and (max-width: ${BREAKPOINT1}px) {
+		width: 70px;
+	}
 `;
 
 const CityTemp = styled.div`
 	font-size: 1.25rem;
 	color: rgba(0, 0, 0, 0.5);
 	margin-right: 10px;
-	width: 67px;
-	@media only screen and (max-width: ${BREAKPOINT}px) {
+	width: 40px;
+	@media only screen and (max-width: ${BREAKPOINT3}px) {
 		width: 40px;
 	}
 `;
@@ -41,8 +44,9 @@ const CityDesc = styled.h3`
 	letter-spacing: 1px;
 	margin: 0px 10px;
 	padding-left: 20px;
-	@media only screen and (min-width: ${BREAKPOINT}px) {
-		display: none;
+	display: none;
+	@media only screen and (min-width: ${BREAKPOINT3}px) {
+		display: block;
 	}
 `;
 
@@ -53,17 +57,16 @@ const OtherCities = ({ weather, setDefaultCity }) => {
 		<ContainerBottom>
 			<HeaderBottom>Other Cities</HeaderBottom>
 			{weather.map((item) => {
-				if (item)
-					return (
-						<ContainerCities key={item.id}>
-							<CityName onClick={() => setDefaultCity(item.name)}>
-								{item.name}
-							</CityName>
-							<CityTemp>{item.temp}</CityTemp>
-							<img src={item.icon} alt="Clouds" />
-							<CityDesc>{item.weather}</CityDesc>
-						</ContainerCities>
-					);
+				return (
+					<ContainerCities key={item.id}>
+						<CityName onClick={() => setDefaultCity(item.name)}>
+							{item.name}
+						</CityName>
+						<CityTemp>{item.temp}</CityTemp>
+						<img src={item.icon} alt="Clouds" />
+						<CityDesc>{item.weather}</CityDesc>
+					</ContainerCities>
+				);
 			})}
 		</ContainerBottom>
 	);

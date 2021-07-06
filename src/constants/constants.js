@@ -43,4 +43,8 @@ export const CITIES = {
 
 export const API = '999f0f8fefdcfd98119382216ae94e89';
 
-export const BREAKPOINT = 1024;
+export const BREAKPOINT3 = 1024;
+
+export const BREAKPOINT2 = 720;
+
+export const BREAKPOINT1 = 320;

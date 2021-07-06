@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { BREAKPOINT } from '../constants/constants';
+import { BREAKPOINT3 } from '../constants/constants';
 import ContainerTop from '../components/ContainerTop';
 
 const CityName = styled.div`
@@ -15,7 +15,7 @@ const CityName = styled.div`
 		margin: 10px auto;
 		display: block;
 		background: white;
-		@media only screen and (max-width: ${BREAKPOINT}px) {
+		@media only screen and (max-width: ${BREAKPOINT3}px) {
 			width: 35%;
 		}
 	}
