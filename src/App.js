@@ -82,7 +82,7 @@ const cities = [
 	},
 ];
 
-const defaultCity = CITIES.MELBOURNE.name;
+// const defaultCity = CITIES.MELBOURNE.name;
 
 class App extends React.Component {
 	constructor(props) {
@@ -94,24 +94,34 @@ class App extends React.Component {
 		};
 
 		this.setWeather = this.setWeather.bind(this);
+		this.setDefaultCity = this.setDefaultCity.bind(this);
 	}
 
-	setWeather(newWeather) {
+	defaultCity = CITIES.MELBOURNE.name;
+	newWeather = [];
+
+	setWeather() {
 		this.setState({
-			weather: newWeather.filter((item) => item.name !== defaultCity),
-			defaultWeather: newWeather[this.defaultIndex],
+			weather: this.newWeather.filter((item) => item.name !== this.defaultCity),
+			defaultWeather: this.newWeather.find(
+				(item) => item.name === this.defaultCity
+			),
 		});
-		// console.log(newWeather);
+		// console.log(this.state.defaultCity);
 	}
 
-	defaultIndex = cities.findIndex((item) => item.name === defaultCity);
+	setDefaultCity(city) {
+		this.defaultCity = city;
+		this.setWeather();
+		console.log('setDefaultCity');
+	}
 
 	componentDidMount() {
-		let output = [];
+		// let output = [];
 
 		getCurrentAndForecast(cities, (data) => {
 			data.forEach((item, index) => {
-				output.push({
+				this.newWeather.push({
 					id: nanoid(),
 					name: cities[index].name,
 					temp: `${Math.trunc(item.current.temp)}°`,
@@ -121,21 +131,21 @@ class App extends React.Component {
 					icon: `http://openweathermap.org/img/wn/${item.current.weather[0].icon}.png`,
 					daily: weekList(weekday(), item.daily),
 				});
-				console.log(output);
+				console.log('API CALLED!!');
 			});
-			this.setWeather(output);
+			this.setWeather();
 		});
 	}
 
 	render() {
 		const { weather, defaultWeather } = this.state;
-		// if (weather) {
-		// 	console.log(weather);
-		// 	console.log(weather.length);
-		// }
+		if (weather) {
+			// console.log(weather);
+			console.log(defaultWeather);
+			// console.log(this.newWeather);
+		}
 
 		if (!weather) {
-			// return 'LOADING......';
 			return (
 				<Container>
 					<Card>
@@ -159,7 +169,10 @@ class App extends React.Component {
 						<CurrentRight city={defaultWeather.name} />
 					</CardTop>
 					<CardBottom>
-						<OtherCities weather={weather} />
+						<OtherCities
+							weather={weather}
+							setDefaultCity={this.setDefaultCity}
+						/>
 						<DividerBottom />
 						<Forecast daily={defaultWeather.daily} />
 					</CardBottom>

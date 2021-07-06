@@ -21,6 +21,7 @@ const CityName = styled.h3`
 	width: 110px;
 	letter-spacing: 1px;
 	margin: 0px;
+	cursor: pointer;
 `;
 
 const CityTemp = styled.div`
@@ -30,8 +31,16 @@ const CityTemp = styled.div`
 	width: 67px;
 `;
 
-const OtherCities = ({ weather }) => {
-	console.log(weather);
+const OtherCities = ({ weather, setDefaultCity }) => {
+	// console.log(weather);
+	console.log('other city rendered！！');
+	// const changeCity = (event) => {
+	// 	console.log('clicked');
+	// 	console.log(event.target.innerText);
+	// 	event.preventDefault();
+	// 	setDefaultCity(event.target.innerText);
+	// };
+
 	return (
 		<ContainerBottom>
 			<HeaderBottom>Other Cities</HeaderBottom>
@@ -39,7 +48,9 @@ const OtherCities = ({ weather }) => {
 				if (item)
 					return (
 						<ContainerCities key={item.id}>
-							<CityName>{item.name}</CityName>
+							<CityName onClick={() => setDefaultCity(item.name)}>
+								{item.name}
+							</CityName>
 							<CityTemp>{item.temp}</CityTemp>
 							<img src={item.icon} alt="Clouds" />
 						</ContainerCities>
