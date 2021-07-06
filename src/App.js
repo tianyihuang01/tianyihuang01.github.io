@@ -1,5 +1,3 @@
-// import logo from './logo.svg';
-// import './App.css';
 import React from 'react';
 import styled from 'styled-components';
 import { nanoid } from 'nanoid';
@@ -9,12 +7,9 @@ import Forecast from './app/Forecast';
 import OtherCities from './app/OtherCities';
 import CurrentRight from './app/CurrentRight';
 
-// import getCurrentWeather from './api/getCurrentWeather/getCurrentWeather';
 import getCurrentAndForecast from './api/getCurrentAndForecast';
-import { CITIES } from './constants/constants';
+import { CITIES, BREAKPOINT } from './constants/constants';
 import { weekday, weekList } from './utils/weekConfig';
-
-// import ContainerBottom from './components/ContainerBottom/ContainerBottom';
 
 const Container = styled.div`
 	width: 100%;
@@ -45,18 +40,30 @@ const CardTop = styled.div`
 	border-top-right-radius: 32px;
 	color: #fff;
 	position: relative;
+
+	@media only screen and (max-width: ${BREAKPOINT}px) {
+		flex-direction: column-reverse;
+	}
 `;
 
 const CardBottom = styled.div`
 	display: flex;
 	flex-direction: row;
 	padding: ${(props) => (props.padding ? '80px 80px' : '36px 0')};
+	
+	@media only screen and (max-width: ${BREAKPOINT}px) {
+		flex-direction: column;
+	}
 }
 `;
 
-const DividerBottom = styled.div`
-	width: 3px;
+const DividerBottom = styled.hr`
+	width: 2px;
 	background-color: rgba(0, 0, 0, 0.1);
+
+	@media only screen and (max-width: ${BREAKPOINT}px) {
+		width: 90%;
+	}
 `;
 
 const cities = [
@@ -82,8 +89,6 @@ const cities = [
 	},
 ];
 
-// const defaultCity = CITIES.MELBOURNE.name;
-
 class App extends React.Component {
 	constructor(props) {
 		super(props);
@@ -107,7 +112,6 @@ class App extends React.Component {
 				(item) => item.name === this.defaultCity
 			),
 		});
-		// console.log(this.state.defaultCity);
 	}
 
 	setDefaultCity(city) {
@@ -117,8 +121,6 @@ class App extends React.Component {
 	}
 
 	componentDidMount() {
-		// let output = [];
-
 		getCurrentAndForecast(cities, (data) => {
 			data.forEach((item, index) => {
 				this.newWeather.push({
@@ -139,12 +141,6 @@ class App extends React.Component {
 
 	render() {
 		const { weather, defaultWeather } = this.state;
-		if (weather) {
-			// console.log(weather);
-			console.log(defaultWeather);
-			// console.log(this.newWeather);
-		}
-
 		if (!weather) {
 			return (
 				<Container>

@@ -29,16 +29,18 @@ export const CITIES = {
 			lat: -27.44573,
 		},
 	},
-	PERTH:{
+	PERTH: {
 		id: 2153391,
 		name: 'Perth',
 		state: '',
 		country: 'AU',
 		coord: {
 			lon: 115.872223,
-			lat: -31.99884
-		}
+			lat: -31.99884,
+		},
 	},
 };
 
 export const API = '999f0f8fefdcfd98119382216ae94e89';
+
+export const BREAKPOINT = 1024;

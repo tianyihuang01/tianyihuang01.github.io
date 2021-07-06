@@ -1,15 +1,6 @@
-// import React from 'react';
 import styled from 'styled-components';
 
 import ContainerTop from '../components/ContainerTop';
-
-// const Loading = styled.div`
-// 	font-size: 3rem;
-// `;
-
-// const Container = styled.div`
-// 	padding: 0 96px;
-// `;
 
 const CurrentTemperature = styled.div`
 	margin: 0;
@@ -32,6 +23,7 @@ const ContainerBottom = styled(TextColor)`
 	display: flex;
 	flex-direction: space-around;
 	font-size: 1rem;
+	justify-content: center;
 `;
 
 const Divider = styled.div`

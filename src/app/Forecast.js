@@ -1,4 +1,3 @@
-// import React from 'react';
 import styled from 'styled-components';
 
 import ContainerBottom from '../components/ContainerBottom';
@@ -9,6 +8,7 @@ const ContainerForecast = styled.div`
 	align-items: center;
 	justify-content: space-between;
 	min-width: 280px;
+	justify-content: center;
 `;
 
 const ContainerWeather = styled.div`

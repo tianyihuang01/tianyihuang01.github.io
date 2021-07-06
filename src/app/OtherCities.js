@@ -1,7 +1,6 @@
-// import React from 'react';
-// import { CITIES } from '../../constants/constants';
 import styled from 'styled-components';
 
+import { BREAKPOINT } from '../constants/constants';
 import ContainerBottom from '../components/ContainerBottom';
 import HeaderBottom from './HeaderBottom';
 
@@ -14,13 +13,14 @@ const ContainerCities = styled.div`
 	letter-spacing: 2px;
 	font-weight: 400;
 	font-size: 1rem;
+	justify-content: space-between;
 `;
 
 const CityName = styled.h3`
 	font-weight: 400;
 	width: 110px;
 	letter-spacing: 1px;
-	margin: 0px;
+	margin: 0px 10px;
 	cursor: pointer;
 `;
 
@@ -29,17 +29,25 @@ const CityTemp = styled.div`
 	color: rgba(0, 0, 0, 0.5);
 	margin-right: 10px;
 	width: 67px;
+	@media only screen and (max-width: ${BREAKPOINT}px) {
+		width: 40px;
+	}
+`;
+
+const CityDesc = styled.h3`
+	font-weight: 400;
+	color: rgba(0, 0, 0, 0.5);
+	width: 60px;
+	letter-spacing: 1px;
+	margin: 0px 10px;
+	padding-left: 20px;
+	@media only screen and (min-width: ${BREAKPOINT}px) {
+		display: none;
+	}
 `;
 
 const OtherCities = ({ weather, setDefaultCity }) => {
-	// console.log(weather);
 	console.log('other city rendered！！');
-	// const changeCity = (event) => {
-	// 	console.log('clicked');
-	// 	console.log(event.target.innerText);
-	// 	event.preventDefault();
-	// 	setDefaultCity(event.target.innerText);
-	// };
 
 	return (
 		<ContainerBottom>
@@ -53,6 +61,7 @@ const OtherCities = ({ weather, setDefaultCity }) => {
 							</CityName>
 							<CityTemp>{item.temp}</CityTemp>
 							<img src={item.icon} alt="Clouds" />
+							<CityDesc>{item.weather}</CityDesc>
 						</ContainerCities>
 					);
 			})}
