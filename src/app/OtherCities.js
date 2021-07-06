@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { BREAKPOINT3, BREAKPOINT1 } from '../constants/constants';
+import { BREAKPOINT3, BREAKPOINT1, BREAKPOINT2 } from '../constants/constants';
 import ContainerBottom from '../components/ContainerBottom';
 import HeaderBottom from './HeaderBottom';
 
@@ -45,7 +45,7 @@ const CityDesc = styled.h3`
 	margin: 0px 10px;
 	padding-left: 20px;
 	display: none;
-	@media only screen and (min-width: ${BREAKPOINT3}px) {
+	@media only screen and (min-width: ${BREAKPOINT2}px) {
 		display: block;
 	}
 `;

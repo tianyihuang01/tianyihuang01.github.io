@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-import { BREAKPOINT3 } from '../constants/constants';
 import ContainerTop from '../components/ContainerTop';
 
 const CityName = styled.div`
@@ -11,13 +10,10 @@ const CityName = styled.div`
 	&::after {
 		content: '';
 		height: 2px;
-		width: 60%;
+		width: 90px;
 		margin: 10px auto;
 		display: block;
 		background: white;
-		@media only screen and (max-width: ${BREAKPOINT3}px) {
-			width: 35%;
-		}
 	}
 `;
 

@@ -43,6 +43,8 @@ export const CITIES = {
 
 export const API = '999f0f8fefdcfd98119382216ae94e89';
 
+// export const API = '2466213f21b4b723d341e00a430a7673';
+
 export const BREAKPOINT3 = 1024;
 
 export const BREAKPOINT2 = 720;

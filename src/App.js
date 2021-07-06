@@ -7,7 +7,8 @@ import Forecast from './app/Forecast';
 import OtherCities from './app/OtherCities';
 import CurrentRight from './app/CurrentRight';
 
-import getCurrentAndForecast from './api/getCurrentAndForecast';
+// import getCurrentAndForecast from './api/getCurrentAndForecast';
+import getCurrentAndForecast from './api/getCurrentAndForecastAxios';
 import { CITIES, BREAKPOINT3 } from './constants/constants';
 import { weekday, weekList } from './utils/weekConfig';
 
@@ -122,22 +123,27 @@ class App extends React.Component {
 	}
 
 	componentDidMount() {
-		getCurrentAndForecast(cities, (data) => {
-			data.forEach((item, index) => {
-				this.newWeather.push({
-					id: nanoid(),
-					name: cities[index].name,
-					temp: `${Math.trunc(item.current.temp)}°`,
-					weather: item.current.weather[0].main,
-					humidity: `${item.current.humidity}%`,
-					wind: `${item.current.wind_speed}M/S`,
-					icon: `http://openweathermap.org/img/wn/${item.current.weather[0].icon}.png`,
-					daily: weekList(weekday(), item.daily),
-				});
-				console.log('API CALLED!!');
+		this.getCurrentAndForecast();
+	}
+
+	async getCurrentAndForecast() {
+		for (let i = 0; i < cities.length; i++) {
+			const { data } = await getCurrentAndForecast(cities[i]);
+			console.log(data);
+			this.newWeather.push({
+				id: nanoid(),
+				name: cities[i].name,
+				temp: `${Math.trunc(data.current.temp)}°`,
+				weather: data.current.weather[0].main,
+				humidity: `${data.current.humidity}%`,
+				wind: `${data.current.wind_speed}M/S`,
+				icon: `http://openweathermap.org/img/wn/${data.current.weather[0].icon}.png`,
+				daily: weekList(weekday(), data.daily),
 			});
-			this.setWeather();
-		});
+			console.log('API CALLED!!');
+		}
+
+		this.setWeather();
 	}
 
 	render() {
