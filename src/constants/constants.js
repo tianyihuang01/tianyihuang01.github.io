@@ -1,4 +1,4 @@
-export const CITIES = {
+const CITIES = {
   MELBOURNE: {
     id: 2158177,
     name: 'Melbourne',
@@ -41,8 +41,12 @@ export const CITIES = {
   },
 };
 
-export const BREAKPOINT3 = 1024;
+const BREAKPOINT3 = 1024;
 
-export const BREAKPOINT2 = 720;
+const BREAKPOINT2 = 720;
 
-export const BREAKPOINT1 = 320;
+const BREAKPOINT1 = 320;
+
+const PORT_BACKEND = 3001;
+
+export { CITIES, BREAKPOINT1, BREAKPOINT2, BREAKPOINT3, PORT_BACKEND };
