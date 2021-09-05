@@ -1,7 +1,9 @@
+/* eslint-disable no-plusplus */
 import React from 'react';
 import styled from 'styled-components';
 import { nanoid } from 'nanoid';
 
+import NavBar from './app/NavBar';
 import CurrentLeft from './app/CurrentLeft';
 import Forecast from './app/Forecast';
 import OtherCities from './app/OtherCities';
@@ -18,13 +20,14 @@ const Container = styled.div`
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  background-attachment: fixed;
   display: flex;
   justify-content: center;
   align-items: center;
 `;
 
 const Card = styled.div`
-  margin: 60px;
+  margin: 30px;
   background: #fff;
   border-radius: 32px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -54,6 +57,7 @@ const CardBottom = styled.div`
 	
 	@media only screen and (max-width: ${BREAKPOINT3}px) {
 		flex-direction: column;
+    padding: 10px 0;
 	}
 }
 `;
@@ -91,6 +95,7 @@ const cities = [
 ];
 
 class App extends React.Component {
+  // eslint-disable-next-line react/sort-comp
   constructor(props) {
     super(props);
 
@@ -104,14 +109,17 @@ class App extends React.Component {
   }
 
   defaultCity = CITIES.MELBOURNE.name;
+
   newWeather = [];
+
+  componentDidMount() {
+    this.getCurrentAndForecast();
+  }
 
   setWeather() {
     this.setState({
       weather: this.newWeather.filter((item) => item.name !== this.defaultCity),
-      defaultWeather: this.newWeather.find(
-        (item) => item.name === this.defaultCity
-      ),
+      defaultWeather: this.newWeather.find((item) => item.name === this.defaultCity),
     });
   }
 
@@ -121,12 +129,9 @@ class App extends React.Component {
     console.log('setDefaultCity');
   }
 
-  componentDidMount() {
-    this.getCurrentAndForecast();
-  }
-
   async getCurrentAndForecast() {
     for (let i = 0; i < cities.length; i++) {
+      // eslint-disable-next-line no-await-in-loop
       const { data } = await getCurrentAndForecast(cities[i]);
       console.log(data);
       this.newWeather.push({
@@ -149,37 +154,48 @@ class App extends React.Component {
     const { weather, defaultWeather } = this.state;
     if (!weather) {
       return (
-        <Container>
-          <Card>
-            <CardTop padding>LOADING......</CardTop>
-            <CardBottom padding>LOADING......</CardBottom>
-          </Card>
-        </Container>
+        <>
+          <header>
+            <NavBar />
+          </header>
+          <main>
+            <Container>
+              <Card>
+                <CardTop padding>LOADING......</CardTop>
+                <CardBottom padding>LOADING......</CardBottom>
+              </Card>
+            </Container>
+          </main>
+        </>
       );
     }
 
     return (
-      <Container>
-        <Card>
-          <CardTop>
-            <CurrentLeft
-              temp={defaultWeather.temp}
-              weather={defaultWeather.weather}
-              humidity={defaultWeather.humidity}
-              wind={defaultWeather.wind}
-            />
-            <CurrentRight city={defaultWeather.name} />
-          </CardTop>
-          <CardBottom>
-            <OtherCities
-              weather={weather}
-              setDefaultCity={this.setDefaultCity}
-            />
-            <DividerBottom />
-            <Forecast daily={defaultWeather.daily} />
-          </CardBottom>
-        </Card>
-      </Container>
+      <>
+        <header>
+          <NavBar />
+        </header>
+        <main>
+          <Container>
+            <Card>
+              <CardTop>
+                <CurrentLeft
+                  temp={defaultWeather.temp}
+                  weather={defaultWeather.weather}
+                  humidity={defaultWeather.humidity}
+                  wind={defaultWeather.wind}
+                />
+                <CurrentRight city={defaultWeather.name} />
+              </CardTop>
+              <CardBottom>
+                <OtherCities weather={weather} setDefaultCity={this.setDefaultCity} />
+                <DividerBottom />
+                <Forecast daily={defaultWeather.daily} />
+              </CardBottom>
+            </Card>
+          </Container>
+        </main>
+      </>
     );
   }
 }

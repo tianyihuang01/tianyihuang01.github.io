@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { BREAKPOINT2, BREAKPOINT1 } from '../constants/constants';
+
 const ContainerBottom = styled.div`
 	padding: 0 48px;
 	border: 0;
