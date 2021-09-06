@@ -4,13 +4,14 @@ import styled from 'styled-components';
 import { nanoid } from 'nanoid';
 
 import NavBar from './app/NavBar';
+import SearchResult from './app/SearchResult';
 import CurrentLeft from './app/CurrentLeft';
 import Forecast from './app/Forecast';
 import OtherCities from './app/OtherCities';
 import CurrentRight from './app/CurrentRight';
 
 import getCurrentAndForecast from './api/getCurrentAndForecastAxios';
-import { CITIES, BREAKPOINT3 } from './constants/constants';
+import { CITIES, BREAKPOINT3, CITY_PLACEHOLDER } from './config/constants';
 import { weekday, weekList } from './utils/weekConfig';
 
 const Container = styled.div`
@@ -31,6 +32,7 @@ const Card = styled.div`
   background: #fff;
   border-radius: 32px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  width: fit-content;
 `;
 
 const CardTop = styled.div`
@@ -101,16 +103,14 @@ class App extends React.Component {
 
     this.state = {
       weather: undefined,
-      defaultWeather: undefined,
+      city: CITY_PLACEHOLDER,
     };
 
     this.setWeather = this.setWeather.bind(this);
-    this.setDefaultCity = this.setDefaultCity.bind(this);
+    this.setCity = this.setCity.bind(this);
   }
 
-  defaultCity = CITIES.MELBOURNE.name;
-
-  newWeather = [];
+  newWeather = {};
 
   componentDidMount() {
     this.getCurrentAndForecast();
@@ -118,45 +118,44 @@ class App extends React.Component {
 
   setWeather() {
     this.setState({
-      weather: this.newWeather.filter((item) => item.name !== this.defaultCity),
-      defaultWeather: this.newWeather.find((item) => item.name === this.defaultCity),
+      weather: this.newWeather,
     });
   }
 
-  setDefaultCity(city) {
-    this.defaultCity = city;
-    this.setWeather();
-    console.log('setDefaultCity');
+  async setCity(selectedCity) {
+    this.setState({ city: selectedCity }, () => {
+      // console.log(this.state.city);
+      this.getCurrentAndForecast();
+    });
   }
 
   async getCurrentAndForecast() {
-    for (let i = 0; i < cities.length; i++) {
-      // eslint-disable-next-line no-await-in-loop
-      const { data } = await getCurrentAndForecast(cities[i]);
-      console.log(data);
-      this.newWeather.push({
-        id: nanoid(),
-        name: cities[i].name,
-        temp: `${Math.trunc(data.current.temp)}°`,
-        weather: data.current.weather[0].main,
-        humidity: `${data.current.humidity}%`,
-        wind: `${data.current.wind_speed}M/S`,
-        icon: `https://openweathermap.org/img/wn/${data.current.weather[0].icon}.png`,
-        daily: weekList(weekday(), data.daily),
-      });
-      console.log('API CALLED!!');
-    }
+    const { id, name, coord } = this.state.city;
+    // console.log(this.state.city);
+    const { data } = await getCurrentAndForecast(coord);
+    this.newWeather = {
+      id,
+      name,
+      temp: `${Math.trunc(data.current.temp)}°`,
+      weather: data.current.weather[0].main,
+      humidity: `${data.current.humidity}%`,
+      wind: `${data.current.wind_speed}M/S`,
+      icon: `https://openweathermap.org/img/wn/${data.current.weather[0].icon}.png`,
+      daily: weekList(weekday(), data.daily),
+    };
+    console.log('API CALLED!!');
 
     this.setWeather();
   }
 
   render() {
-    const { weather, defaultWeather } = this.state;
+    const { weather } = this.state;
+
     if (!weather) {
       return (
         <>
           <header>
-            <NavBar />
+            <NavBar setCity={this.setCity} />
           </header>
           <main>
             <Container>
@@ -173,24 +172,24 @@ class App extends React.Component {
     return (
       <>
         <header>
-          <NavBar />
+          <NavBar setCity={this.setCity} />
         </header>
         <main>
           <Container>
             <Card>
               <CardTop>
                 <CurrentLeft
-                  temp={defaultWeather.temp}
-                  weather={defaultWeather.weather}
-                  humidity={defaultWeather.humidity}
-                  wind={defaultWeather.wind}
+                  temp={weather.temp}
+                  weather={weather.weather}
+                  humidity={weather.humidity}
+                  wind={weather.wind}
                 />
-                <CurrentRight city={defaultWeather.name} />
+                <CurrentRight city={weather.name} />
               </CardTop>
               <CardBottom>
-                <OtherCities weather={weather} setDefaultCity={this.setDefaultCity} />
+                {/* <OtherCities weather={weather} setDefaultCity={this.setDefaultCity} /> */}
                 <DividerBottom />
-                <Forecast daily={defaultWeather.daily} />
+                <Forecast daily={weather.daily} />
               </CardBottom>
             </Card>
           </Container>

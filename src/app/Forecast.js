@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { BREAKPOINT2 } from '../constants/constants';
+import { BREAKPOINT2 } from '../config/constants';
 import ContainerBottom from '../components/ContainerBottom';
 import HeaderBottom from './HeaderBottom';
 

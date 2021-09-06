@@ -1,14 +1,20 @@
-import React from 'react';
+/* eslint-disable no-plusplus */
+/* eslint-disable react/no-access-state-in-setstate */
+/* eslint-disable react/no-unused-state */
+/* eslint-disable react/prefer-stateless-function */
+import React, { Component } from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
-import { BREAKPOINT2 } from '../constants/constants';
+import getCitiesByName from '../api/getCitiesByName';
+import SearchResult from './SearchResult';
+import { BREAKPOINT2 } from '../config/constants';
 import logo from '../images/weather_icon.png';
 
 const NavContainer = styled.div`
   background-color: rgb(66 0 82);
-  overflow: hidden;
+  ${'' /* overflow: hidden; */}
   display: flex;
   justify-content: space-between;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -67,24 +73,80 @@ const SearchButton = styled.button`
   }
 `;
 
-const NavBar = () => (
-  <>
-    <NavContainer>
-      <NavBrand>
-        <NavIcon src={logo} alt="Logo" />
-        <NavText>My Weather App</NavText>
-      </NavBrand>
+// const getResultList = ()
 
-      <SearchContainer>
-        <form>
-          <SearchInput placeholder="Search" />
-          <SearchButton>
-            <FontAwesomeIcon icon={faSearch} />
-          </SearchButton>
-        </form>
-      </SearchContainer>
-    </NavContainer>
-  </>
-);
+class NavBar extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      searchInput: undefined,
+      searchResult: [],
+    };
+
+    this.setSearchInput = this.setSearchInput.bind(this);
+    this.setSearchResult = this.setSearchResult.bind(this);
+  }
+
+  setSearchInput = (event) => {
+    this.setState({ searchInput: event.target.value, searchResult: [] });
+  };
+
+  setSearchResult = (result) => {
+    this.clearSearchResult();
+    for (let i = 0; i < result.length; i++) {
+      this.setState({ searchResult: [...this.state.searchResult, result[i]] });
+    }
+    console.log(this.state.searchResult);
+  };
+
+  clearSearchResult = () => {
+    this.setState({ searchResult: [] });
+  };
+
+  getCitiesByName = async (event) => {
+    event.preventDefault();
+    const { searchInput } = this.state;
+    if (searchInput && searchInput.trim() !== '') {
+      const city = { name: searchInput };
+      const { data } = await getCitiesByName(city);
+      console.log(data);
+      this.setSearchResult(data);
+    }
+  };
+
+  render() {
+    const { searchInput, searchResult } = this.state;
+    const { setCity } = this.props;
+    // console.log(this);
+    // console.log(searchResult.length);
+    return (
+      <>
+        <NavContainer>
+          <NavBrand>
+            <NavIcon src={logo} alt="Logo" />
+            <NavText>My Weather App</NavText>
+          </NavBrand>
+
+          <SearchContainer>
+            <form onSubmit={this.getCitiesByName}>
+              <SearchInput
+                placeholder="Search"
+                type="text"
+                name="city"
+                onChange={this.setSearchInput}
+              />
+              <SearchButton>
+                <FontAwesomeIcon icon={faSearch} />
+              </SearchButton>
+            </form>
+          </SearchContainer>
+
+          {searchResult.length !== 0 && <SearchResult result={searchResult} setCity={setCity} />}
+        </NavContainer>
+      </>
+    );
+  }
+}
 
 export default NavBar;

@@ -41,6 +41,17 @@ const CITIES = {
   },
 };
 
+const CITY_PLACEHOLDER = {
+  id: 2158177,
+  name: 'Melbourne',
+  state: '',
+  country: 'AU',
+  coord: {
+    lon: 144.963318,
+    lat: -37.813999,
+  },
+};
+
 const BREAKPOINT3 = 1024;
 
 const BREAKPOINT2 = 720;
@@ -49,4 +60,4 @@ const BREAKPOINT1 = 320;
 
 const PORT_BACKEND = 3001;
 
-export { CITIES, BREAKPOINT1, BREAKPOINT2, BREAKPOINT3, PORT_BACKEND };
+export { CITIES, BREAKPOINT1, BREAKPOINT2, BREAKPOINT3, PORT_BACKEND, CITY_PLACEHOLDER };
