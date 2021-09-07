@@ -101,7 +101,7 @@ class NavBar extends Component {
     for (let i = 0; i < result.length; i++) {
       this.setState({ searchResult: [...this.state.searchResult, result[i]] });
     }
-    console.log(this.state.searchResult);
+    // console.log(this.state.searchResult);
   };
 
   clearSearchResult = () => {
@@ -114,7 +114,7 @@ class NavBar extends Component {
     if (searchInput && searchInput.trim() !== '') {
       const city = { name: searchInput };
       const { data } = await getCitiesByName(city);
-      console.log(data);
+      // console.log(data);
       this.setSearchResult(data);
     }
   };

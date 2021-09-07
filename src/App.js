@@ -5,6 +5,7 @@ import { nanoid } from 'nanoid';
 
 import NavBar from './app/NavBar';
 import SearchResult from './app/SearchResult';
+import News from './app/News';
 import CurrentLeft from './app/CurrentLeft';
 import Forecast from './app/Forecast';
 import OtherCities from './app/OtherCities';
@@ -42,7 +43,7 @@ const Card = styled.div`
     width: 320px;
   }
 
-  @media only screen and (min-width: ${BREAKPOINT2}px) and (max-width: ${BREAKPOINT3}px) {
+  @media only screen and (min-width: ${BREAKPOINT2 + 1}px) and (max-width: ${BREAKPOINT3}px) {
     width: 720px;
   }
 `;
@@ -68,7 +69,8 @@ const CardBottom = styled.div`
 	display: flex;
 	flex-direction: row;
 	padding: ${(props) => (props.padding ? '80px 80px' : '36px 0')};
-	
+	justify-content: ${(props) => (props.padding ? 'center' : 'flex-start')};
+
 	@media only screen and (max-width: ${BREAKPOINT2}px) {
 		flex-direction: column;
     padding: 10px 0;
@@ -82,6 +84,10 @@ const DividerBottom = styled.hr`
 
   @media only screen and (max-width: ${BREAKPOINT2}px) {
     width: 90%;
+  }
+
+  @media only screen and (min-width: ${BREAKPOINT2 + 1}px) and (max-width: ${BREAKPOINT3}px) {
+    margin: unset;
   }
 `;
 
@@ -132,14 +138,14 @@ class App extends React.Component {
       icon: `https://openweathermap.org/img/wn/${data.current.weather[0].icon}.png`,
       daily: weekList(weekday(), data.daily),
     };
-    console.log('API CALLED!!');
+    // console.log(`Weather API CALLED!! -- ${name}`);
 
     this.setWeather();
   }
 
   render() {
-    const { weather } = this.state;
-
+    const { weather, city } = this.state;
+    // console.log('App Render', city, weather);
     if (!weather) {
       return (
         <>
@@ -176,9 +182,9 @@ class App extends React.Component {
                 <CurrentRight city={weather.name} />
               </CardTop>
               <CardBottom>
-                {/* <OtherCities weather={weather} setDefaultCity={this.setDefaultCity} /> */}
                 <Forecast daily={weather.daily} />
                 <DividerBottom />
+                <News city={city} />
               </CardBottom>
             </Card>
           </Container>

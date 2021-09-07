@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 import { BREAKPOINT2 } from '../config/constants';
 import ContainerBottom from '../components/ContainerBottom';
-import HeaderBottom from './HeaderBottom';
+import HeaderBottom from '../components/HeaderBottom';
+import Source from '../components/Source';
 
 const ContainerForecast = styled.div`
   display: flex;
@@ -9,6 +10,7 @@ const ContainerForecast = styled.div`
   justify-content: space-between;
   min-width: 280px;
   justify-content: center;
+  margin-bottom: 21px;
 
   @media only screen and (max-width: ${BREAKPOINT2}px) {
     min-width: auto;
@@ -59,6 +61,9 @@ const Forecast = ({ daily }) => (
         </ContainerWeather>
       ))}
     </ContainerForecast>
+    <Source>
+      Power by <a href="https://openweathermap.org/">OpenWeather</a>
+    </Source>
   </ContainerBottom>
 );
 

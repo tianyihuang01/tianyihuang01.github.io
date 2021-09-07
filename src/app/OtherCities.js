@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import { BREAKPOINT2 } from '../config/constants';
 import ContainerBottom from '../components/ContainerBottom';
-import HeaderBottom from './HeaderBottom';
+import HeaderBottom from '../components/HeaderBottom';
 
 const ContainerCities = styled.div`
   display: flex;
