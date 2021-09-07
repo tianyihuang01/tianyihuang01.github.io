@@ -9,11 +9,14 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 import getCitiesByName from '../api/getCitiesByName';
 import SearchResult from './SearchResult';
-import { BREAKPOINT2 } from '../config/constants';
+import { BREAKPOINT2, BREAKPOINT1 } from '../config/constants';
 import logo from '../images/weather_icon.png';
 
 const NavContainer = styled.div`
-  background-color: rgb(66 0 82);
+  background-color: #2b244d;
+  position: fixed;
+  z-index: 1;
+  width: 100%;
   ${'' /* overflow: hidden; */}
   display: flex;
   justify-content: space-between;
@@ -53,7 +56,8 @@ const SearchInput = styled.input`
   border: none;
   background-color: rgba(66 0 82 0.15);
 
-  @media only screen and (max-width: ${BREAKPOINT2}px) {
+  @media only screen and (max-width: ${BREAKPOINT1}px) {
+    max-width: 170px;
   }
 `;
 
@@ -142,7 +146,9 @@ class NavBar extends Component {
             </form>
           </SearchContainer>
 
-          {searchResult.length !== 0 && <SearchResult result={searchResult} setCity={setCity} />}
+          {searchResult.length !== 0 && (
+            <SearchResult result={searchResult} setCity={setCity} clear={this.clearSearchResult} />
+          )}
         </NavContainer>
       </>
     );

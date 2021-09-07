@@ -11,7 +11,7 @@ import OtherCities from './app/OtherCities';
 import CurrentRight from './app/CurrentRight';
 
 import getCurrentAndForecast from './api/getCurrentAndForecastAxios';
-import { CITIES, BREAKPOINT3, CITY_PLACEHOLDER } from './config/constants';
+import { BREAKPOINT1, BREAKPOINT2, BREAKPOINT3, CITY_PLACEHOLDER } from './config/constants';
 import { weekday, weekList } from './utils/weekConfig';
 
 const Container = styled.div`
@@ -28,11 +28,23 @@ const Container = styled.div`
 `;
 
 const Card = styled.div`
-  margin: 30px;
+  margin: 68px 0 20px 0;
   background: #fff;
   border-radius: 32px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  width: fit-content;
+  width: 720px;
+
+  @media only screen and (max-width: ${BREAKPOINT1}px) {
+    width: 250px;
+  }
+
+  @media only screen and (min-width: ${BREAKPOINT1}px) and (max-width: ${BREAKPOINT2}px) {
+    width: 320px;
+  }
+
+  @media only screen and (min-width: ${BREAKPOINT2}px) and (max-width: ${BREAKPOINT3}px) {
+    width: 720px;
+  }
 `;
 
 const CardTop = styled.div`
@@ -47,7 +59,7 @@ const CardTop = styled.div`
   color: #fff;
   position: relative;
 
-  @media only screen and (max-width: ${BREAKPOINT3}px) {
+  @media only screen and (max-width: ${BREAKPOINT2}px) {
     flex-direction: column-reverse;
   }
 `;
@@ -57,7 +69,7 @@ const CardBottom = styled.div`
 	flex-direction: row;
 	padding: ${(props) => (props.padding ? '80px 80px' : '36px 0')};
 	
-	@media only screen and (max-width: ${BREAKPOINT3}px) {
+	@media only screen and (max-width: ${BREAKPOINT2}px) {
 		flex-direction: column;
     padding: 10px 0;
 	}
@@ -68,33 +80,10 @@ const DividerBottom = styled.hr`
   width: 2px;
   background-color: rgba(0, 0, 0, 0.1);
 
-  @media only screen and (max-width: ${BREAKPOINT3}px) {
+  @media only screen and (max-width: ${BREAKPOINT2}px) {
     width: 90%;
   }
 `;
-
-const cities = [
-  {
-    name: CITIES.MELBOURNE.name,
-    lat: CITIES.MELBOURNE.coord.lat,
-    lon: CITIES.MELBOURNE.coord.lon,
-  },
-  {
-    name: CITIES.SYDNEY.name,
-    lat: CITIES.SYDNEY.coord.lat,
-    lon: CITIES.SYDNEY.coord.lon,
-  },
-  {
-    name: CITIES.BRISBANE.name,
-    lat: CITIES.BRISBANE.coord.lat,
-    lon: CITIES.BRISBANE.coord.lon,
-  },
-  {
-    name: CITIES.PERTH.name,
-    lat: CITIES.PERTH.coord.lat,
-    lon: CITIES.PERTH.coord.lon,
-  },
-];
 
 class App extends React.Component {
   // eslint-disable-next-line react/sort-comp
@@ -188,8 +177,8 @@ class App extends React.Component {
               </CardTop>
               <CardBottom>
                 {/* <OtherCities weather={weather} setDefaultCity={this.setDefaultCity} /> */}
-                <DividerBottom />
                 <Forecast daily={weather.daily} />
+                <DividerBottom />
               </CardBottom>
             </Card>
           </Container>

@@ -31,7 +31,7 @@ const Result = styled.div`
   cursor: pointer;
 `;
 
-const SearchResult = ({ result, setCity }) => {
+const SearchResult = ({ result, setCity, clear }) => {
   const getCityDetail = (event) => {
     event.preventDefault();
     const newId = Number(event.target.attributes.id.nodeValue);
@@ -39,6 +39,7 @@ const SearchResult = ({ result, setCity }) => {
     // console.log(newCity);
     // console.log(setCity);
     setCity(newCity);
+    clear();
   };
 
   return (
