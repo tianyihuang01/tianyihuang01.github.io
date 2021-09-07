@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 /* eslint-disable no-plusplus */
 /* eslint-disable react/no-access-state-in-setstate */
 /* eslint-disable react/no-unused-state */
@@ -93,7 +94,8 @@ class NavBar extends Component {
   }
 
   setSearchInput = (event) => {
-    this.setState({ searchInput: event.target.value, searchResult: [] });
+    if (event.target.value !== '')
+      this.setState({ searchInput: event.target.value, searchResult: [] });
   };
 
   setSearchResult = (result) => {
@@ -106,6 +108,11 @@ class NavBar extends Component {
 
   clearSearchResult = () => {
     this.setState({ searchResult: [] });
+  };
+
+  clearInputValue = (event) => {
+    event.target.value = '';
+    this.clearSearchResult();
   };
 
   getCitiesByName = async (event) => {
@@ -139,6 +146,7 @@ class NavBar extends Component {
                 type="text"
                 name="city"
                 onChange={this.setSearchInput}
+                onFocus={this.clearInputValue}
               />
               <SearchButton>
                 <FontAwesomeIcon icon={faSearch} />

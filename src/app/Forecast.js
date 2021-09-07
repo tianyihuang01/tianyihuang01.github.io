@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { BREAKPOINT2 } from '../config/constants';
+import { BREAKPOINT1, BREAKPOINT2 } from '../config/constants';
 import ContainerBottom from '../components/ContainerBottom';
 import HeaderBottom from '../components/HeaderBottom';
 import Source from '../components/Source';
@@ -31,8 +31,13 @@ const ContainerWeather = styled.div`
   width: 50px;
   margin: 0 10px;
 
-  @media only screen and (max-width: ${BREAKPOINT2}px) {
+  @media only screen and (max-width: ${BREAKPOINT1}px) {
     display: ${(props) => (props.display >= 3 ? 'none' : 'block')};
+  }
+
+  @media only screen and (min-width: ${BREAKPOINT1 + 1}px) and (max-width: ${BREAKPOINT2}px) {
+    display: ${(props) => (props.display >= 3 ? 'none' : 'block')};
+    margin: 0 18px;
   }
 `;
 
@@ -62,7 +67,10 @@ const Forecast = ({ daily }) => (
       ))}
     </ContainerForecast>
     <Source>
-      Power by <a href="https://openweathermap.org/">OpenWeather</a>
+      Power by{' '}
+      <a href="https://openweathermap.org/" target="_blank" rel="noreferrer">
+        OpenWeather
+      </a>
     </Source>
   </ContainerBottom>
 );

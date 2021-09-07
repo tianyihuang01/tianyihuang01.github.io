@@ -39,7 +39,7 @@ const Card = styled.div`
     width: 250px;
   }
 
-  @media only screen and (min-width: ${BREAKPOINT1}px) and (max-width: ${BREAKPOINT2}px) {
+  @media only screen and (min-width: ${BREAKPOINT1 + 1}px) and (max-width: ${BREAKPOINT2}px) {
     width: 320px;
   }
 
@@ -62,6 +62,7 @@ const CardTop = styled.div`
 
   @media only screen and (max-width: ${BREAKPOINT2}px) {
     flex-direction: column-reverse;
+    align-items: center;
   }
 `;
 
@@ -74,6 +75,7 @@ const CardBottom = styled.div`
 	@media only screen and (max-width: ${BREAKPOINT2}px) {
 		flex-direction: column;
     padding: 10px 0;
+    align-items: center;
 	}
 }
 `;

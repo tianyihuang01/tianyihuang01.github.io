@@ -107,7 +107,10 @@ class News extends Component {
           </div>
         ))}
         <Source>
-          Power by <a href="https://newsapi.org/">News API</a>
+          Power by{' '}
+          <a href="https://newsapi.org/" target="_blank" rel="noreferrer">
+            News API
+          </a>
         </Source>
       </ContainerBottom>
     );
