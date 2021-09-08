@@ -1,24 +1,23 @@
 /* eslint-disable no-plusplus */
 import React from 'react';
 import styled from 'styled-components';
-import { nanoid } from 'nanoid';
 
 import NavBar from './app/NavBar';
-import SearchResult from './app/SearchResult';
 import News from './app/News';
 import CurrentLeft from './app/CurrentLeft';
 import Forecast from './app/Forecast';
-import OtherCities from './app/OtherCities';
 import CurrentRight from './app/CurrentRight';
 
 import getCurrentAndForecast from './api/getCurrentAndForecastAxios';
 import { BREAKPOINT1, BREAKPOINT2, BREAKPOINT3, CITY_PLACEHOLDER } from './config/constants';
 import { weekday, weekList } from './utils/weekConfig';
+import background from './images/background.webp';
+import backgroundTop from './images/background_top.jpg';
 
 const Container = styled.div`
   width: 100%;
   min-height: 100vh;
-  background-image: url(https://wallpaperaccess.com/full/2629319.png);
+  background-image: url(${background});
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -53,7 +52,7 @@ const CardTop = styled.div`
   flex-direction: row;
   justify-content: center;
   padding: ${(props) => (props.padding ? '80px 80px' : '64px 0')};
-  background-image: url(https://i.imgur.com/GhQZhaO.jpg);
+  background-image: url(${backgroundTop});
   background-size: cover;
   border-top-left-radius: 32px;
   border-top-right-radius: 32px;
