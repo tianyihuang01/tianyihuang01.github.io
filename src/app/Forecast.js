@@ -15,12 +15,6 @@ const ContainerForecast = styled.div`
   @media only screen and (max-width: ${BREAKPOINT2}px) {
     min-width: auto;
   }
-
-  ${
-    '' /* @media only screen and (max-width: ${BREAKPOINT2}px) and (min-width: ${BREAKPOINT1}px) {
-		min-width: auto;
-	} */
-  }
 `;
 
 const ContainerWeather = styled.div`

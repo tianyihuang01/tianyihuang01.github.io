@@ -40,7 +40,6 @@ class News extends Component {
   }
 
   setNews = (result) => {
-    // this.clearNews();
     this.setState({ news: result });
   };
 
