@@ -10,7 +10,7 @@ const ContainerForecast = styled.div`
   justify-content: space-between;
   min-width: 280px;
   justify-content: center;
-  margin-bottom: 21px;
+  margin-bottom: 22px;
 
   @media only screen and (max-width: ${BREAKPOINT2}px) {
     min-width: auto;
