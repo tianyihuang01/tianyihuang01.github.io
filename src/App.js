@@ -88,7 +88,7 @@ const DividerBottom = styled.hr`
     width: 90%;
   }
 
-  @media only screen and (min-width: ${BREAKPOINT2 + 1}px) and (max-width: ${BREAKPOINT3}px) {
+  @media only screen and (min-width: ${BREAKPOINT2 + 1}px) {
     margin: unset;
   }
 `;
