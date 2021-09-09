@@ -58,7 +58,7 @@ const SearchInput = styled.input`
   background-color: rgba(66 0 82 0.15);
 
   @media only screen and (max-width: ${BREAKPOINT1}px) {
-    max-width: 170px;
+    width: calc(100% - 65px);
   }
 `;
 
@@ -77,8 +77,6 @@ const SearchButton = styled.button`
     background: #ccc;
   }
 `;
-
-// const getResultList = ()
 
 class NavBar extends Component {
   constructor(props) {
