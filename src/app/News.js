@@ -9,10 +9,20 @@ import ContainerBottom from '../components/ContainerBottom';
 import Source from '../components/Source';
 import { PAGE_SIZE } from '../config/constants';
 
-const NewsTitle = styled.a`
+const NewsContainer = styled.div`
+  margin-bottom: 10px;
+`;
+
+const TitleContainer = styled.a`
+  text-decoration: none;  
+`;
+
+const Title = styled.div`
   font-weight: 500;
-  color: black;
-  text-decoration: none;
+  color: black;  
+  overflow: hidden;
+  line-height: 1.5em;
+  height: 3em;
 `;
 
 class News extends Component {
@@ -94,16 +104,15 @@ class News extends Component {
         <HeaderBottom>News</HeaderBottom>
         {news.articles.slice(0, 2).map(({ title, url, publishedAt, source }, index) => (
           // eslint-disable-next-line react/no-array-index-key
-          <div key={index}>
-            <NewsTitle href={url} target="_blank" rel="noreferrer">
-              <div>{this.shortenText(title, 50)}...</div>
-            </NewsTitle>
+          <NewsContainer key={index}>
+            <TitleContainer href={url} target="_blank" rel="noreferrer">
+              <Title>{title}</Title>
+            </TitleContainer>
             <Source>
               {source.name}&nbsp;
               {this.shortenText(publishedAt, 10)}
             </Source>
-            <br />
-          </div>
+          </NewsContainer>
         ))}
         <Source>
           Power by{' '}
