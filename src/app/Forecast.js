@@ -4,13 +4,19 @@ import ContainerBottom from '../components/ContainerBottom';
 import HeaderBottom from '../components/HeaderBottom';
 import Source from '../components/Source';
 
+const ContainerBottomFlex = styled(ContainerBottom)`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
+
 const ContainerForecast = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
   min-width: 280px;
   justify-content: center;
-  margin-bottom: 22px;
+  margin: 10px -10px 15px ;
 
   @media only screen and (max-width: ${BREAKPOINT2}px) {
     min-width: auto;
@@ -38,18 +44,18 @@ const ContainerWeather = styled.div`
 const ForecastWeek = styled.h3`
   font-weight: 400;
   letter-spacing: 1px;
-  margin: 0.85rem 0 0.66rem;
+  margin: 0 0 0.6rem 0;
 `;
 
 const ForecastTemp = styled.div`
   font-size: 1.25rem;
   color: rgba(0, 0, 0, 0.5);
   margin-right: 10px;
-  margin: 0.6em 0 0 0;
+  margin: 0.6rem 0 0 0;
 `;
 
 const Forecast = ({ daily }) => (
-  <ContainerBottom>
+  <ContainerBottomFlex>
     <HeaderBottom>Forecast</HeaderBottom>
     <ContainerForecast>
       {daily.map(({ key, img, temp }, index) => (
@@ -66,7 +72,7 @@ const Forecast = ({ daily }) => (
         OpenWeather
       </a>
     </Source>
-  </ContainerBottom>
+  </ContainerBottomFlex>
 );
 
 export default Forecast;
