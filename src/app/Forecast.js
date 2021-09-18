@@ -36,8 +36,7 @@ const ContainerWeather = styled.div`
   }
 
   @media only screen and (min-width: ${BREAKPOINT1 + 1}px) and (max-width: ${BREAKPOINT2}px) {
-    display: ${(props) => (props.display >= 3 ? 'none' : 'block')};
-    margin: 0 18px;
+    display: ${(props) => (props.display >= 4 ? 'none' : 'block')};
   }
 `;
 
