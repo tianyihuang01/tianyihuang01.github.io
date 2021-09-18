@@ -73,7 +73,7 @@ const CardBottom = styled.div`
 
 	@media only screen and (max-width: ${BREAKPOINT2}px) {
 		flex-direction: column;
-    padding: 10px 0;
+    padding-top: 10px;
     align-items: center;
 	}
 }
