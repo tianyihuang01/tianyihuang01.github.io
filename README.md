@@ -8,7 +8,7 @@ The Technology stack used:
 - **Styling:** Flexbox, styled-components
 - **API:** [OpenWeatherAPI](https://openweathermap.org/api)
 - **API Call:** Axios
-- **Code Format:** Eslint, Prettier
+- **Code Format:** ESLint, Prettier
 
 To run this app:
 
