@@ -8,22 +8,23 @@ The Technology stack used:
 - **Styling:** Flexbox, styled-components
 - **API:** [OpenWeatherAPI](https://openweathermap.org/api)
 - **API Call:** Axios
+- **Code Format:** Eslint, Prettier
 
 To run this app:
 
-- Click the link to [github page](https://tianyihuang01.github.io/jr-project-2-weather/).
+- Click the link to [AWS S3 Bucket](http://weather-app-front.s3-website-ap-southeast-2.amazonaws.com/).
 - Alternatively, clone the repo and run the app in dev mode with `npm start` command.
 
 Main Function:
 
-- Show the basic weather info in Melbourne, Sydney, Brisbane and Perth.
+- Show the weather forecast and local news.
 
-  ![](https://github.com/tianyihuang01/jr-project-2-weather/blob/main/src/images/main_layout_small.png?raw=true)
+  ![](https://github.com/tianyihuang01/weather-app-front/blob/main/src/images/main_layout_v2.png?raw=true)
 
-- Click the city name to change the current weather details and weather forecast (3 days to 5 days)
+- Search the weather of other cities by search bar (4 days to 5 days)
 
-  ![](https://github.com/tianyihuang01/jr-project-2-weather/blob/main/src/images/change_details_zip_small.gif?raw=true)
+  ![](https://github.com/tianyihuang01/weather-app-front/blob/main/src/images/change_details_zip_small_v2.gif?raw=true)
 
 - Responsive in different screen width.
 
-  ![](https://github.com/tianyihuang01/jr-project-2-weather/blob/main/src/images/responsive_zip_small.gif?raw=true)
+  ![](https://github.com/tianyihuang01/weather-app-front/blob/main/src/images/responsive_zip_small.gif?raw=true)
