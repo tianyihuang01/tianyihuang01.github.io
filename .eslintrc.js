@@ -17,7 +17,6 @@ module.exports = {
     es2021: true,
   },
   rules: {
-    // 'prettier/prettier': ['error'],
     'no-unused-vars': 'off',
     'no-console': 'off',
     'no-debugger': 'error',
@@ -37,5 +36,8 @@ module.exports = {
     'react/react-in-jsx-scope': ['off'],
     'no-return-assign': ['off'],
     'no-nested-ternary': ['off'],
+    'no-param-reassign': ['off'],
+    'no-plusplus':['off'],
+    'react/no-array-index-key':['off'],
   },
 };

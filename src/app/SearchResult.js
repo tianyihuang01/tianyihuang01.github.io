@@ -1,10 +1,8 @@
-/* eslint-disable consistent-return */
 import styled from 'styled-components';
 import { BREAKPOINT2 } from '../config/constants';
 
 const ResultContainer = styled.div`
   width: 245px;
-  ${'' /* position: fixed; */}
   position: absolute;
   top: 60px;
   right: 37px;
@@ -36,8 +34,6 @@ const SearchResult = ({ result, setCity, clear }) => {
     event.preventDefault();
     const newId = Number(event.target.attributes.id.nodeValue);
     const newCity = result.filter((item) => item.id === newId)[0];
-    // console.log(newCity);
-    // console.log(setCity);
     setCity(newCity);
     clear();
   };

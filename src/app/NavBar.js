@@ -1,8 +1,3 @@
-/* eslint-disable no-param-reassign */
-/* eslint-disable no-plusplus */
-/* eslint-disable react/no-access-state-in-setstate */
-/* eslint-disable react/no-unused-state */
-/* eslint-disable react/prefer-stateless-function */
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -18,7 +13,6 @@ const NavContainer = styled.div`
   position: fixed;
   z-index: 1;
   width: 100%;
-  ${'' /* overflow: hidden; */}
   display: flex;
   justify-content: space-between;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -48,8 +42,8 @@ const NavText = styled.a`
 `;
 
 const SearchContainer = styled.div`
-  ${'' /* float: right; */}
 `;
+
 const SearchInput = styled.input`
   padding: 6px;
   margin: 8px 0;
@@ -63,8 +57,6 @@ const SearchInput = styled.input`
 `;
 
 const SearchButton = styled.button`
-  ${'' /* float: right; */}
-  ${'' /* width: 15px; */}
   padding: 6px 10px;
   margin-top: 8px;
   margin-right: 16px;
@@ -99,9 +91,8 @@ class NavBar extends Component {
   setSearchResult = (result) => {
     this.clearSearchResult();
     for (let i = 0; i < result.length; i++) {
-      this.setState({ searchResult: [...this.state.searchResult, result[i]] });
+      this.setState(prevState => ({ searchResult: [...prevState.searchResult, result[i]] }));
     }
-    // console.log(this.state.searchResult);
   };
 
   clearSearchResult = () => {
@@ -119,7 +110,6 @@ class NavBar extends Component {
     if (searchInput && searchInput.trim() !== '') {
       const city = { name: searchInput };
       const { data } = await getCitiesByName(city);
-      // console.log(data);
       this.setSearchResult(data);
     }
   };
@@ -127,8 +117,6 @@ class NavBar extends Component {
   render() {
     const { searchInput, searchResult } = this.state;
     const { setCity } = this.props;
-    // console.log(this);
-    // console.log(searchResult.length);
     return (
       <>
         <NavContainer>

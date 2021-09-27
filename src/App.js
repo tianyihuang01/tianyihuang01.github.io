@@ -1,4 +1,3 @@
-/* eslint-disable no-plusplus */
 import React from 'react';
 import styled from 'styled-components';
 
@@ -93,7 +92,8 @@ const DividerBottom = styled.hr`
 `;
 
 class App extends React.Component {
-  // eslint-disable-next-line react/sort-comp
+  newWeather = {};
+
   constructor(props) {
     super(props);
 
@@ -105,8 +105,6 @@ class App extends React.Component {
     this.setWeather = this.setWeather.bind(this);
     this.setCity = this.setCity.bind(this);
   }
-
-  newWeather = {};
 
   componentDidMount() {
     this.getCurrentAndForecast();
@@ -120,14 +118,12 @@ class App extends React.Component {
 
   async setCity(selectedCity) {
     this.setState({ city: selectedCity }, () => {
-      // console.log(this.state.city);
       this.getCurrentAndForecast();
     });
   }
 
   async getCurrentAndForecast() {
     const { id, name, coord } = this.state.city;
-    // console.log(this.state.city);
     const { data } = await getCurrentAndForecast(coord);
     this.newWeather = {
       id,
@@ -139,14 +135,11 @@ class App extends React.Component {
       icon: `https://openweathermap.org/img/wn/${data.current.weather[0].icon}.png`,
       daily: weekList(weekday(), data.daily),
     };
-    // console.log(`Weather API CALLED!! -- ${name}`);
-
     this.setWeather();
   }
 
   render() {
     const { weather, city } = this.state;
-    // console.log('App Render', city, weather);
     if (!weather) {
       return (
         <>

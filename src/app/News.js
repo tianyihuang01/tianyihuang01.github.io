@@ -1,5 +1,3 @@
-/* eslint-disable react/no-access-state-in-setstate */
-/* eslint-disable no-plusplus */
 import React, { Component } from 'react';
 import styled from 'styled-components';
 
@@ -41,10 +39,7 @@ class News extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    // console.log('prev Props city:', prevProps.city);
-    // console.log('this props city:', this.props.city);
     if (prevProps.city.id !== this.props.city.id) {
-      // console.log('another news call');
       this.getNews();
     }
   }
@@ -60,11 +55,9 @@ class News extends Component {
   getNews = async () => {
     const cityName = this.formatCity(this.props.city.name);
     const cityQuery = { name: cityName, pageSize: PAGE_SIZE };
-    // console.log('News Call', cityQuery);
     const { data } = await getNewsByName(cityQuery);
     if (data.status === 'ok') {
       this.setNews(data);
-      // console.log('response:', data);
     }
   };
 
@@ -79,7 +72,6 @@ class News extends Component {
   render() {
     const { news } = this.state;
     const { city } = this.props;
-    // console.log('News Render:', city, news);
 
     if (!news) {
       return (
@@ -103,7 +95,6 @@ class News extends Component {
       <ContainerBottom>
         <HeaderBottom>News</HeaderBottom>
         {news.articles.slice(0, 2).map(({ title, url, publishedAt, source }, index) => (
-          // eslint-disable-next-line react/no-array-index-key
           <NewsContainer key={index}>
             <TitleContainer href={url} target="_blank" rel="noreferrer">
               <Title>{title}</Title>
