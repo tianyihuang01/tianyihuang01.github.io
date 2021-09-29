@@ -1,6 +1,6 @@
 module.exports = {
-  extends: ['react-app', 'airbnb', 'prettier'],
-  plugins: ['prettier'],
+  extends: ['react-app', 'airbnb', 'prettier', 'plugin:cypress/recommended'],
+  plugins: ['prettier', 'cypress'],
   parser: 'babel-eslint',
   parserOptions: {
     sourceType: 'module',
@@ -15,6 +15,7 @@ module.exports = {
     browser: true,
     jest: true,
     es2021: true,
+    'cypress/globals':true,
   },
   rules: {
     'no-unused-vars': 'off',
@@ -39,5 +40,11 @@ module.exports = {
     'no-param-reassign': ['off'],
     'no-plusplus':['off'],
     'react/no-array-index-key':['off'],
+    "cypress/no-assigning-return-values": "error",
+    "cypress/no-unnecessary-waiting": "error",
+    "cypress/assertion-before-screenshot": "warn",
+    "cypress/no-force": "warn",
+    "cypress/no-async-tests": "error",
+    "cypress/no-pause": "error"
   },
 };
