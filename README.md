@@ -9,6 +9,7 @@ The Technology stack used:
 - **API:** [OpenWeatherAPI](https://openweathermap.org/api)
 - **API Call:** Axios
 - **Code Format:** ESLint, Prettier
+- **e2e Testing:** Cypress
 
 To run this app:
 
