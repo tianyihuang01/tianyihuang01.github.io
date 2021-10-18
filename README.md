@@ -20,12 +20,12 @@ Main Function:
 
 - Show the weather forecast and local news.
 
-  ![](https://github.com/tianyihuang01/weather-app-front/blob/main/src/images/main_layout_v2.png?raw=true)
+  <img src="https://github.com/tianyihuang01/weather-app-front/blob/main/src/images/main_layout_v2.png?raw=true" alt="full" width="500"/>
 
 - Search the weather of other cities by search bar (4 days to 5 days)
 
-  ![](https://github.com/tianyihuang01/weather-app-front/blob/main/src/images/change_details_zip_small_v2.gif?raw=true)
+  <img src="https://github.com/tianyihuang01/weather-app-front/blob/main/src/images/change_details_zip_small_v2.gif?raw=true" alt="search" width="500"/>
 
 - Responsive in different screen width.
-
-  ![](https://github.com/tianyihuang01/weather-app-front/blob/main/src/images/responsive_zip_small.gif?raw=true)
+  
+  <img src="https://github.com/tianyihuang01/weather-app-front/blob/main/src/images/responsive_zip_small.gif?raw=true" alt="responsive" width="500"/>
